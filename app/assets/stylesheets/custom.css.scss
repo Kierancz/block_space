@@ -1,0 +1,71 @@
+@import "bootstrap";
+
+.storyblock img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    overflow:hidden;
+}
+
+#blockdetails {
+  font-size: 1em;
+  margin-bottom: 20px;
+  color: #AAA;
+}
+
+.panel-footer {
+  font-size: 0.8em;
+  padding: 0px 5px 0px 5px;
+  color: #999;
+  background-color: #FAFAFA;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.logo {
+	font-weight:bold;
+	color: #ccc !important;
+}
+
+.logo:hover {
+	font-weight:bold;
+	color: #fff !important;
+	text-shadow: black 0.2em 0.2em 0.2em;
+}
+
+container {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #999;
+}

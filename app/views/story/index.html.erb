@@ -1,0 +1,15 @@
+<div class="jumbotron">
+<h1><b>Stories</b></h1>
+</div>
+
+<% @stories.each do |story| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to story.title, story %><span class="badge pull-right"><%= story.blocks.count %> blocks</span></h3>
+
+  </div>
+  <div class="panel-body">
+    <%= story.description %>
+  </div>
+</div>
+<% end %>
