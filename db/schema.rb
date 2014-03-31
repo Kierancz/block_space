@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140330071311) do
+ActiveRecord::Schema.define(version: 20140331004143) do
 
   create_table "blocks", force: true do |t|
     t.integer  "number"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140330071311) do
 
   create_table "users", force: true do |t|
     t.string   "username"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
