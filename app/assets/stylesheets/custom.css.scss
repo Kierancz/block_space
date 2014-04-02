@@ -1,5 +1,15 @@
 @import "bootstrap";
 
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .storyblock img {
     max-width: 100%;
     height: auto;
@@ -13,30 +23,10 @@
   color: #AAA;
 }
 
-.panel-footer {
-  font-size: 0.8em;
-  padding: 0px 5px 0px 5px;
-  color: #999;
-  background-color: #FAFAFA;
-}
+/* universal */
 
 html {
   overflow-y: scroll;
-}
-
-.logo {
-	font-weight:bold;
-	color: #ccc !important;
-}
-
-.logo:hover {
-	font-weight:bold;
-	color: #fff !important;
-	text-shadow: black 0.2em 0.2em 0.2em;
-}
-
-container {
-  padding-top: 60px;
 }
 
 section {
@@ -49,10 +39,15 @@ textarea {
 
 .center {
   text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
 }
 
-.center h1 {
-  margin-bottom: 10px;
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
 }
 
 h1 {
@@ -64,8 +59,68 @@ h1 {
 
 h2 {
   font-size: 1.2em;
+  letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: $gray-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-light;
+  color: $gray-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }
