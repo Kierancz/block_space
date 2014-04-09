@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20140406223749) do
     t.integer  "number"
     t.text     "content"
     t.integer  "story_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
-  add_index "blocks", ["story_id"], name: "index_blocks_on_story_id"
+  add_index "blocks", ["story_id", "user_id"], name: "index_blocks_on_story_id_and_user_id"
 
   create_table "stories", force: true do |t|
     t.string   "title"
