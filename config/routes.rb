@@ -1,6 +1,6 @@
 FinalpApp::Application.routes.draw do
 
-  resources :story, :only => :show
+  resources :story, :only => [:new, :show, :create]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root 'pages#home'
@@ -8,6 +8,7 @@ FinalpApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new',       via: 'get'
   match '/signout', to: 'sessions#destroy',   via: 'delete'
   match '/stories', to: 'story#index',        via: 'get'
+  match '/stories', to: 'story#create',       via: 'post'
   match '/signup',  to: 'users#new',          via: 'get'
   match '/help',    to: 'pages#help',         via: 'get'
   match '/about',   to: 'pages#about',        via: 'get'
