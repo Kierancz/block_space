@@ -1,15 +1,43 @@
 <div class="jumbotron">
-<h1><b>Stories</b></h1>
+  <h1><b>Stories</b></h1>
 </div>
 
-<% @stories.each do |story| %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= link_to story.title, story %><span class="badge pull-right"><%= story.blocks.count %> blocks</span></h3>
-
-  </div>
+<div class="row">
+ <div class="col-md-6">
+  <h2>Your Stories</h2>
+  <div class="panel panel-default">
   <div class="panel-body">
-    <%= story.description %>
+  <% @user_stories.each do |story| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= link_to story.title, story %><span class="badge pull-right"><%= story.blocks.count %> blocks</span></h3>
+
+    </div>
+    <div class="panel-body">
+      <%= story.description %>
+    </div>
+  </div>
+  <% end %>
   </div>
 </div>
-<% end %>
+</div>
+
+<div class="col-md-6">
+  <h2>All Stories</h2>
+    <div class="panel panel-default">
+  <div class="panel-body">
+  <% @stories.each do |story| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= link_to story.title, story %><span class="badge pull-right"><%= story.blocks.count %> blocks</span></h3>
+
+    </div>
+    <div class="panel-body">
+      <%= story.description %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
+</div>
+</div>
