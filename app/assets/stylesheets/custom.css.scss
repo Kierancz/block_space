@@ -10,8 +10,14 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+* {-webkit-font-smoothing: antialiased;}​
+
 hr {
   margin-bottom: 0;
+}
+
+#editlink {
+  position:absolute;
 }
 
 .smalltext {
