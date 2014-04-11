@@ -1,0 +1,58 @@
+<% if current_user && @story.users.include?(current_user) %>
+	<h1><b>Editting: </b><%= @story.title %></h1>
+	<hr>
+
+	<div class="row">
+ 		<div class="col-md-6">
+ 			<%= form_for(@story) do |f| %>
+
+      		<%= f.label :title %>
+      		<%= f.text_field :title, class: "form-control" %>
+
+      		<%= f.label :descrition %>
+      		<%= f.text_area :description, :rows => 3, class: "form-control" %>
+
+      		<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
+      		<% end %>
+		</div>
+
+		<center><label>Contributors</label></center>
+		<div class="col-md-6">
+			<ul class="list-group">
+				<% @story.users.each do |contributor| %>
+				<li class="list-group-item">
+					<span><%= link_to " ", {:controller => "story", :action => "removecollaborator", :id => @story.id, :contributor => contributor.id }, :class => 'glyphicon glyphicon-remove pull-right'%></span>
+					<%= contributor.username %> -  <%= contributor.email %>
+				</li>
+				<% end %>
+				<li class="list-group-item">
+					<label>Add new contributor</label>
+					<%= form_for :user do |f| %>
+					<div class="input-group">
+						<%= f.text_field :username, class: "form-control" %>
+						<span class="input-group-btn">
+							<%= f.submit "Add", class: "btn btn-large btn-primary" %>
+						</span>
+					</div>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+<% @blocks.each do |block| %>
+<div class="panel panel-default storyblock">
+  	<div class="panel-body">
+  		<%= block.content.html_safe %>
+  	</div>
+  	<div class="panel-footer">Posted by: <%= User.find(block.user_id).username %><span class="pull-right"><%= block.created_at %></span></div>
+</div>
+<% end %>
+<% else %>
+<center><h1>You do not have permission to access this page</h1>
+<h2>Please login to access your stories</h2></center>
+<% end %>
+
+
+

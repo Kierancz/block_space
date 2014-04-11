@@ -10,6 +10,16 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+hr {
+  margin-bottom: 0;
+}
+
+.smalltext {
+  font-size: 0.8em;
+  line-height: 0;
+  color: $gray-light;
+}
+
 .storyblock img {
     max-width: 100%;
     height: auto;

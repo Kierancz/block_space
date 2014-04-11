@@ -1,33 +1,36 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4 class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-				<h1><b><%= @story.title %></b></h1>
-			</a>
-		</h4>
+<script>
+	function show(id) {
+	  document.getElementById(id).style.visibility = "visible";
+	}
+	function hide(id) {
+	  document.getElementById(id).style.visibility = "hidden";
+	}
+</script>
+
+<div onMouseOver="show('editlink')" onMouseOut="hide('editlink')">
+	<% if current_user && @story.users.include?(current_user) %>
+	<span id="editlink"><%= link_to " Edit", [:edit, @story], :class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span>
+	<% end %>
+	<h1><b><%= @story.title %></b><br>
+		<small><%= @story.description %></small>
+	</h1>
+	<hr>
+</div>
+<div class="row">
+	<div class="col-md-6 smalltext">
+		<p><b>Contributors: </b>
+			<%= @users.map(&:username).join(', ') %>
+		</p>
 	</div>
-	<div id="collapseOne" class="panel-collapse collapse">
-		<div class="panel-body">
-			<h2><%= @story.description %></h2>
-			<h2>
-				<b>Contributors: </b>
-				<% @users.each do |user| %>
-				<%= user.username %>
-				<% end %>
-			</h2>
-		</div>
+	<div class="col-md-6 pull-right smalltext" style="text-align:right">
+		<p>Last Edited: <%= @story.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></p>
 	</div>
 </div>
-
-
 <% @blocks.each do |block| %>
 <div class="panel panel-default storyblock">
-  	<div class="panel-body">
-  		<%= block.content.html_safe %>
-  	</div>
-  	<div class="panel-footer">Posted by: <%= User.find(block.user_id).username %><span class="pull-right"><%= block.created_at %></span></div>
+	<div class="panel-body">
+		<%= block.content.html_safe %>
+	</div>
+	<div class="panel-footer">Posted by: <%= User.find(block.user_id).username %><span class="pull-right"><%= block.created_at %></span></div>
 </div>
 <% end %>
-
-
-

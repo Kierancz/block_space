@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_and_belongs_to_many :stories
+	has_and_belongs_to_many :stories, -> { uniq }
 	has_many :blocks
 
   	before_save { self.email = email.downcase }
