@@ -21,9 +21,9 @@ class StoryController < ApplicationController
         collaborator = User.where(username: params[:user][:username]).take
 
         if !collaborator
-          flash.now[:error] = 'Error: Username \'' + params[:user][:username] + '\' does not exist'
+          flash.now[:danger] = 'Error: Username \'' + params[:user][:username] + '\' does not exist'
         elsif @users.map(&:id).include? collaborator.id
-          flash.now[:error] = 'Error: User \'' + params[:user][:username] + '\' is already a collaborator'
+          flash.now[:danger] = 'Error: User \'' + params[:user][:username] + '\' is already a collaborator'
         else
           @story.users << collaborator
         end
@@ -51,6 +51,18 @@ class StoryController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+
+  def destroy
+    @story = Story.find(params[:id])
+    if current_user && @story.users.include?(current_user)
+      if @story.destroy()
+        flash[:success] = "Story \'" + @story.title + "\' has been deleted."
+      else
+        flash[:danger] = "Story failed to be deleted. Please try again later."
+      end
+    end
+    redirect_to action: "index"
   end
 
   def new

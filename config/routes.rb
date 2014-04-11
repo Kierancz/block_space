@@ -9,6 +9,7 @@ FinalpApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',   via: 'delete'
   match '/stories', to: 'story#index',        via: 'get'
   match '/stories', to: 'story#create',       via: 'post'
+  match '/stories/:id/destroy', to: 'story#destroy',      via: 'delete'
   match '/stories/removecollaborator', to: 'story#removecollaborator', via: 'get'
   match '/story/:id/edit', to: 'story#edit',    via: 'post'
   match '/signup',  to: 'users#new',          via: 'get'

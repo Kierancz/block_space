@@ -12,8 +12,10 @@
       		<%= f.label :descrition %>
       		<%= f.text_area :description, :rows => 3, class: "form-control" %>
 
-      		<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
+      		<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %><br><br>
       		<% end %>
+      		<%= button_to('Delete Story', { :action => "destroy", :id => @story.id },
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %>
 		</div>
 
 		<center><label>Contributors</label></center>
