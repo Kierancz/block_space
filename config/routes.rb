@@ -3,19 +3,20 @@ FinalpApp::Application.routes.draw do
   resources :story
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  
   root 'pages#home'
-  match '/signup',  to: 'users#new',          via: 'get'
-  match '/signin',  to: 'sessions#new',       via: 'get'
-  match '/signout', to: 'sessions#destroy',   via: 'delete'
-  match '/stories', to: 'story#index',        via: 'get'
-  match '/stories', to: 'story#create',       via: 'post'
-  match '/stories/:id/destroy', to: 'story#destroy',      via: 'delete'
-  match '/stories/removecollaborator', to: 'story#removecollaborator', via: 'get'
-  match '/story/:id/edit', to: 'story#edit',    via: 'post'
-  match '/signup',  to: 'users#new',          via: 'get'
-  match '/help',    to: 'pages#help',         via: 'get'
-  match '/about',   to: 'pages#about',        via: 'get'
-  match '/contact', to: 'pages#contact',      via: 'get'
+  match '/signup',                      to: 'users#new',                via: 'get'
+  match '/signin',                      to: 'sessions#new',             via: 'get'
+  match '/signout',                     to: 'sessions#destroy',         via: 'delete'
+  match '/stories',                     to: 'story#index',              via: 'get'
+  match '/stories',                     to: 'story#create',             via: 'post'
+  match '/stories/:id/destroy',         to: 'story#destroy',            via: 'delete'
+  match '/stories/removecollaborator',  to: 'story#removecollaborator', via: 'get'
+  match '/story/:id/edit',              to: 'story#edit',               via: 'post'
+  match '/signup',                      to: 'users#new',                via: 'get'
+  match '/help',                        to: 'pages#help',               via: 'get'
+  match '/about',                       to: 'pages#about',              via: 'get'
+  match '/contact',                     to: 'pages#contact',            via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -4,6 +4,7 @@ gem 'rails', '4.0.4'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sprockets', '2.11.0'
 gem 'bcrypt-ruby', '3.1.2'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -19,6 +20,7 @@ group :test do
   gem 'factory_girl_rails', '4.2.1'
   gem 'cucumber-rails', '1.4.0', :require => false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'simplecov', '~> 0.7.1'
 end
 
 gem 'sass-rails', '4.0.1'

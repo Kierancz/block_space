@@ -59,6 +59,7 @@ describe "Authentication" do
   end
       
   describe "in the Users controller" do
+    let(:user) { FactoryGirl.create(:user) }
 
     describe "visiting the edit page" do
       before { visit edit_user_path(user) }
