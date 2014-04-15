@@ -1,0 +1,9 @@
+<%= form_for([@story, @story.blocks.build]) do |f| %>
+  <div class="col-md-6 col-md-offset-3">
+  	<div class="field">
+  		<h2>Add a block:</h2>
+    	<%= f.text_area :content, placeholder: "Enter HTML content..." %>
+  	</div>
+  	<%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<% @story.blocks.each do |block| %>
+  		<div class="panel panel-default">
+  			<div class="panel-body">
+				<%= block.content.try(:html_safe) %>
+			</div>
+			<div class="panel-footer">Posted by: "Couldn't get this to work"<span class="pull-right"><%= block.created_at %></span></div>
+		</div>
+<% end %>

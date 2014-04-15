@@ -1,6 +1,8 @@
 FinalpApp::Application.routes.draw do
 
-  resources :story
+  resources :story do
+    resources :blocks
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   

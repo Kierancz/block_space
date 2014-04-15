@@ -42,15 +42,8 @@
 		</div>
 	</div>
 
+<%= render "blocks/blocks" %>
 
-<% @blocks.each do |block| %>
-<div class="panel panel-default storyblock">
-  	<div class="panel-body">
-  		<%= block.content.html_safe %>
-  	</div>
-  	<div class="panel-footer">Posted by: <%= User.find(block.user_id).username %><span class="pull-right"><%= block.created_at %></span></div>
-</div>
-<% end %>
 <% else %>
 <center><h1>You do not have permission to access this page</h1>
 <h2>Please login to access your stories</h2></center>
