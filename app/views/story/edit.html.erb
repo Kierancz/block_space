@@ -9,7 +9,7 @@
       		<%= f.label :title %>
       		<%= f.text_field :title, class: "form-control" %>
 
-      		<%= f.label :descrition %>
+      		<%= f.label :description %>
       		<%= f.text_area :description, :rows => 3, class: "form-control" %>
 
       		<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %><br><br>
@@ -42,6 +42,7 @@
 		</div>
 	</div>
 
+<h2>Edit blocks:</h2>
 <%= render "blocks/blocks" %>
 
 <% else %>
