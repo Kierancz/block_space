@@ -10,7 +10,6 @@ FinalpApp::Application.routes.draw do
   match '/signup',                      to: 'users#new',                via: 'get'
   match '/signin',                      to: 'sessions#new',             via: 'get'
   match '/signout',                     to: 'sessions#destroy',         via: 'delete'
-  #match '/story/:story_id/blocks/:id/', to: 'blocks#edit',              via: 'get'
   match '/story/:story_id/blocks/:id/destroy', to: 'blocks#destroy',    via: 'delete'
   match '/stories',                     to: 'story#index',              via: 'get'
   match '/stories',                     to: 'story#create',             via: 'post'

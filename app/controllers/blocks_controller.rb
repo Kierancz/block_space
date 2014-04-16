@@ -1,18 +1,18 @@
 class BlocksController < ApplicationController
-  before_action :signed_in_user, only: [:show, :create, :destroy, :new, :edit, :update]
+  before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update]
 
 
   def new
-  	#@block = @story.blocks.new
-  	@block = Block.new
+  	@block = Block.new(:user => current_user)
   end
 
   def create
   	@story = Story.find(params[:story_id])
   	@block = @story.blocks.create(block_params)
-  	# @block.user = current_user
+  	@block.user = current_user
+  	@block.save
   	if @block.save
-  		flash[:success] = "Block created!"
+  		flash.now[:success] = "Block created!"
   		redirect_to @story
   	else
   		render 'new'
@@ -22,13 +22,11 @@ class BlocksController < ApplicationController
   def edit
   	@block = Block.find(params[:id])
   	@story = Story.find(params[:story_id])
-  	#@block = @story.blocks.find(params[:id])
   end
 
   def update
   	@story = Story.find(params[:story_id])
   	@block = Block.find(params[:id])
-  	#@block = @story.blocks.find(params[:id])
   	if @block.update_attributes(block_params)
   		flash.now[:success] = "Block updated!"
   		redirect_to @story
@@ -40,7 +38,6 @@ class BlocksController < ApplicationController
   def destroy
   	@story = Story.find(params[:story_id])
   	@block = Block.find(params[:id])
-  	#@block = @story.blocks.find(params[:id])
   	@block.destroy
   	redirect_to @story
   end

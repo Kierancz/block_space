@@ -3,13 +3,12 @@
   		<div class="panel panel-default">
   			<div class="panel-body">
 				<%= block.content.try(:html_safe) %>
-					<span><%= link_to "Delete", [block.story, block], 
-						method: :delete, data: { confirm: 'Are you sure?'},
+			</div>
+			<div class="panel-footer">Posted by: <%= block.user.username unless block.user.blank? %>  at: <%= block.created_at %><span class="pull-right"><%= link_to "Delete", 
+				[block.story, block], method: :delete, data: { confirm: 'Are you sure?'},
 						:class => 'glyphicon glyphicon-remove pull-right'%></span>
 					<span><%= link_to "Edit", edit_story_block_path(@story, block), 
-						:class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span>
-			</div>
-			<div class="panel-footer">Posted by: "Couldn't get this to work"<span class="pull-right"><%= block.created_at %></span></div>
+						:class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span></div>
 		</div>
 	</div>
 <% end %>
