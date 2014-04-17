@@ -11,7 +11,7 @@ class StoryController < ApplicationController
     @story = Story.find(id)
 
     # Make sure user has permission to view this
-    if current_user && current_user.stories.includes(@story)
+    if current_user && @story.users.include?(current_user)
       @blocks = @story.blocks.all
       @users = @story.users.all
     

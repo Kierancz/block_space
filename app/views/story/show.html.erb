@@ -21,7 +21,9 @@
 <div class="row">
 	<div class="col-md-6 smalltext">
 		<p><b>Contributors: </b>
-			<%= @users.map(&:username).join(', ') %>
+ 			<% @users.each do |user| %>
+ 			<%= link_to user.username, user %>
+ 			<% end %>
 		</p>
 	</div>
 	<div class="col-md-6 pull-right smalltext" style="text-align:right">

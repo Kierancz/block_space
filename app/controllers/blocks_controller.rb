@@ -20,26 +20,36 @@ class BlocksController < ApplicationController
   end
 
   def edit
-  	@block = Block.find(params[:id])
-  	@story = Story.find(params[:story_id])
+    @story = Story.find(params[:story_id]) rescue nil
+    if @story && current_user && @story.users.include?(current_user)
+  	   @block = Block.find(params[:id])
+    else
+      redirect_to controller: "story", action: "index"
+    end
   end
 
   def update
-  	@story = Story.find(params[:story_id])
-  	@block = Block.find(params[:id])
-  	if @block.update_attributes(block_params)
-  		flash.now[:success] = "Block updated!"
-  		redirect_to @story
-  	else 
-  		render 'edit'
-  	end
+    @story = Story.find(params[:story_id])
+    if @story && current_user && @story.users.include?(current_user)
+     @block = Block.find(params[:id])
+     if @block.update_attributes(block_params)
+      flash.now[:success] = "Block updated!"
+      redirect_to @story
+    else 
+      render 'edit'
+    end
+  else
+    redirect_to controller: "story", action: "index"
   end
+end
 
   def destroy
-  	@story = Story.find(params[:story_id])
-  	@block = Block.find(params[:id])
-  	@block.destroy
-  	redirect_to @story
+    @story = Story.find(params[:story_id])
+    if current_user && @story.users.include?(current_user)
+     @block = Block.find(params[:id])
+     @block.destroy
+     redirect_to @story
+   end
   end
 
   private

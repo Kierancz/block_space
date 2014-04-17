@@ -7,11 +7,13 @@
 		</div>
 		<div class="panel-footer">
 			<small>Posted by: <%= block.user.username unless block.user.blank? %> on <%= block.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></small>
+			<% if current_user && @story.users.include?(current_user) %>
 			<span class="pull-right"><%= link_to "Delete", 
 				[block.story, block], method: :delete, data: { confirm: 'Are you sure?'},
 				:class => 'glyphicon glyphicon-remove badge alert-info pull-right'%></span>
 			<span><%= link_to "Edit", edit_story_block_path(@story, block), 
 				:class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span>
+			<% end %>
 		</div>
 	</div>
 </div>

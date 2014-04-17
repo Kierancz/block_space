@@ -1,3 +1,4 @@
+<% if current_user && @story.users.include?(current_user) %>
 <%= form_for([@story, @story.blocks.build]) do |f| %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -8,4 +9,5 @@
   	<%= f.submit "Create", class: "btn btn-large btn-primary" %>
   </div>
 </div>
+<% end %>
 <% end %>

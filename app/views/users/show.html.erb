@@ -1,11 +1,45 @@
 <% provide(:title, @user.username) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
+  <div class="col-md-6 col-md-offset-3">
         <%= gravatar_for @user %>
-        <%= @user.username %>
-      </h1>
-    </section>
-  </aside>
+        <div style="float:right">
+        <h1 style="margin: 8px"><b><%= @user.username %></b></h1>
+        <h2 style="margin: 0px"><b><%= @user.email %></b></h2>
+    </div>
+
+        <hr>
+    <div class="row">
+    <div class="col-md-4">
+    	<center><b><h3><%= @user.stories.count %></h3></b>
+    	Stories</center>
+    </div>
+    <div class="col-md-4">
+    	<center><b><h3><%= @user.blocks.count %></h3></b>
+    	Blocks</center>
+    </div>
+    <div class="col-md-4">
+    	<center><b><h3><%= time_ago_in_words(@user.created_at.to_time) %></h3></b>
+    	Age</center>
+    </div>
+	</div>
+	<hr>
+
+
+	<center><h3>Stories</h3></center>
+	<div class="list-group">
+        <% if @user.stories.count == 0 %>
+        <center> You don't have any stories yet </center>
+        <% end %>
+        <% @user.stories.each do |story| %>
+        <%= link_to(story, :class => "list-group-item") do %>
+      <h4 class="list-group-item-heading">
+        <%= story.title %><span class="badge pull-right"><%= story.blocks.count %> blocks</span>
+      </h4>
+      <p class="list-group-item-text">
+        <%= story.description %>
+      </p>
+      <% end %>
+      <% end %>
+</div>
+</div>
 </div>
