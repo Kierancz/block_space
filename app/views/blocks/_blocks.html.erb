@@ -1,15 +1,19 @@
 <% @story.blocks.each do |block| %>
+<div class="row">
 <div class="col-md-6 col-md-offset-3">
-  		<div class="panel panel-default">
-  			<div class="panel-body">
-				<%= block.content.try(:html_safe) %>
-			</div>
-			<div class="panel-footer">Posted by: <%= block.user.username unless block.user.blank? %>  at: <%= block.created_at %><span class="pull-right"><%= link_to "Delete", 
+	<div class="panel panel-default storyblock">
+		<div class="panel-body">
+			<%= block.content.try(:html_safe) %>
+		</div>
+		<div class="panel-footer">
+			<small>Posted by: <%= block.user.username unless block.user.blank? %> on <%= block.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></small>
+			<span class="pull-right"><%= link_to "Delete", 
 				[block.story, block], method: :delete, data: { confirm: 'Are you sure?'},
-						:class => 'glyphicon glyphicon-remove pull-right'%></span>
-					<span><%= link_to "Edit", edit_story_block_path(@story, block), 
-						:class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span></div>
+				:class => 'glyphicon glyphicon-remove badge alert-info pull-right'%></span>
+			<span><%= link_to "Edit", edit_story_block_path(@story, block), 
+				:class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span>
 		</div>
 	</div>
+</div>
+</div>
 <% end %>
-

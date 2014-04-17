@@ -14,11 +14,9 @@
 	<h1><b><%= @story.title %></b><br>
 		<small><%= @story.description %></small>
 	</h1>
-	<hr>
 </div>
+<hr>
 
-<%= render "blocks/blocks" %>
-<%= render "blocks/form" %>
 
 <div class="row">
 	<div class="col-md-6 smalltext">
@@ -27,6 +25,9 @@
 		</p>
 	</div>
 	<div class="col-md-6 pull-right smalltext" style="text-align:right">
-		<p>Last Edited: <%= @story.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></p>
+		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></p>
 	</div>
 </div>
+
+<%= render "blocks/blocks" %>
+<%= render "blocks/form" %>

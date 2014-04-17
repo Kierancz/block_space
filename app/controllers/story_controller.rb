@@ -83,6 +83,10 @@ class StoryController < ApplicationController
     @story = Story.find(id)
     @blocks = @story.blocks.all
     @users = @story.users.all
+    @lastedited = @story.blocks.order("created_at").last
+    if !@lastedited
+      @lastedited = @story
+    end
   end
 
   private
