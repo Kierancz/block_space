@@ -55,4 +55,7 @@ describe User do
     	before { @user.save }
     	its(:remember_token) { should_not be_blank }
   	end
+
+    describe "Login user" do
+      
 end

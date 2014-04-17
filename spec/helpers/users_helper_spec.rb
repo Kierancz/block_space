@@ -1,15 +1,10 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UsersHelper. For example:
-#
-# describe UsersHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe UsersHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+	describe '#gravatar_for' do
+    it "returns the image tag for the specified user's gravtar image" do
+      user = User.create(username: "John", email: 'johndoe@example.com', password: "foobar", password_confirmation: "foobar")
+      expect(gravatar_for(user)).to eq('<img alt="John" class="gravatar" src="https://secure.gravatar.com/avatar/fd876f8cd6a58277fc664d47ea10ad19" />')
+    end
+  end
 end
