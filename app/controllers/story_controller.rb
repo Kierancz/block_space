@@ -81,8 +81,7 @@ class StoryController < ApplicationController
   def show
   	id = params[:id]
     @story = Story.find(id)
-    @blocks = @story.blocks.all
-    @users = @story.users.all
+    @users = @story.users
     @lastedited = @story.blocks.order("created_at").last
     if !@lastedited
       @lastedited = @story

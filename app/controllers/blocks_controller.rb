@@ -8,8 +8,10 @@ class BlocksController < ApplicationController
 
   def create
   	@story = Story.find(params[:story_id])
+    @maxnum = @story.blocks.order('number').last.number
   	@block = @story.blocks.create(block_params)
   	@block.user = current_user
+    @block.number = @maxnum + 1
   	@block.save
   	if @block.save
   		flash.now[:success] = "Block created!"
@@ -48,6 +50,12 @@ end
     if current_user && @story.users.include?(current_user)
      @block = Block.find(params[:id])
      @block.destroy
+
+     @i = 1
+     @story.blocks.order('number').each do |block|
+        block.update_attribute(:number, @i)
+        @i = @i + 1
+      end
      redirect_to @story
    end
   end

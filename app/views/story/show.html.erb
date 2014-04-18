@@ -1,15 +1,23 @@
 <script>
-	function show(id) {
-	  document.getElementById(id).style.visibility = "visible";
-	}
-	function hide(id) {
-	  document.getElementById(id).style.visibility = "hidden";
-	}
+$(document).ready(function(){
+	$("#editlink").hide();
+
+	$("#titlesection").hover(function () {
+		$("#editlink").finish().fadeIn("fast");
+	},
+	function () {
+		$("#editlink").finish().fadeOut("fast");
+	});
+});
 </script>
 
-<div onMouseOver="show('editlink')" onMouseOut="hide('editlink')">
+<div id="titlesection">
 	<% if current_user && @story.users.include?(current_user) %>
-	<span id="editlink"><%= link_to " Edit", [:edit, @story], :class => 'glyphicon glyphicon-pencil badge alert-info pull-right' %></span>
+	<span id="editlink" class="pull-right">
+		<%= button_to([:edit, @story], :data_toggle => 'tooltip', :title => 'Edit Block', :method => "get", :class => 'btn btn-xs btn-primary') do %>
+			<span class="glyphicon glyphicon-pencil"></span>
+		<% end %>
+	</span>
 	<% end %>
 	<h1><b><%= @story.title %></b><br>
 		<small><%= @story.description %></small>
