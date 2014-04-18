@@ -1,12 +1,21 @@
 <script>
 $(document).ready(function(){
 	$("#editlink").hide();
+	$("#edittext").hide();
+
 
 	$("#titlesection").hover(function () {
-		$("#editlink").finish().fadeIn("fast");
+		$("#editlink").stop().fadeIn("fast");
 	},
 	function () {
-		$("#editlink").finish().fadeOut("fast");
+		$("#editlink").stop().fadeOut("fast");
+	});
+
+	$("#editlink").hover(function () {
+		$("#edittext").stop().show('slide');
+	},
+	function () {
+		$("#edittext").stop().hide('slide');
 	});
 });
 </script>
@@ -14,8 +23,8 @@ $(document).ready(function(){
 <div id="titlesection">
 	<% if current_user && @story.users.include?(current_user) %>
 	<span id="editlink" class="pull-right">
-		<%= button_to([:edit, @story], :data_toggle => 'tooltip', :title => 'Edit Block', :method => "get", :class => 'btn btn-xs btn-primary') do %>
-			<span class="glyphicon glyphicon-pencil"></span>
+		<%= button_to([:edit, @story], :method => "get", :class => 'btn btn-xs btn-primary') do %>
+			<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Story</div>
 		<% end %>
 	</span>
 	<% end %>
