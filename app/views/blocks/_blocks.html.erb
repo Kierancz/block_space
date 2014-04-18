@@ -9,15 +9,15 @@
 				<small>Posted by: <%= block.user.username unless block.user.blank? %> on 
 					<%= block.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></small>
 				<% if current_user && @story.users.include?(current_user) %>
-				<span class="pull-right">
-				<%= button_to({:controller => :blocks, :action => 'destroy', :id => block.id, :story_id => @story.id }, :method => :delete, :data_toggle => 'tooltip', confirm: 'Are you sure you want to delete this block?', :title => 'Delete Block', :class => 'btn btn-xs btn-danger') do %>
-				<span class="glyphicon glyphicon-remove"></span>
+				<span class="pull-right blockbutton">
+				<%= button_to({:controller => :blocks, :action => 'destroy', :id => block.id, :story_id => @story.id }, :method => :delete, confirm: 'Are you sure you want to delete this block?', :class => 'btn btn-xs btn-danger') do %>
+				<span class="glyphicon glyphicon-remove"><span class="buttontext">Delete</span></span>
 				<% end %>
 
 				</span>
-				<span class="pull-right">
-				<%= button_to(edit_story_block_path(@story, block), :data_toggle => 'tooltip', :title => 'Edit Block', :method => "get", :class => 'btn btn-xs btn-primary') do %>
-				<span class="glyphicon glyphicon-pencil"></span>
+				<span class="pull-right blockbutton">
+				<%= button_to(edit_story_block_path(@story, block), :method => "get", :class => 'btn btn-xs btn-primary') do %>
+				<span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
 				<% end %>
 				</span>
 

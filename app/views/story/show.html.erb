@@ -2,6 +2,8 @@
 $(document).ready(function(){
 	$("#editlink").hide();
 	$("#edittext").hide();
+	$(".panel-footer").find("button").hide();
+	$(".buttontext").hide();
 
 
 	$("#titlesection").hover(function () {
@@ -16,6 +18,27 @@ $(document).ready(function(){
 	},
 	function () {
 		$("#edittext").stop().hide('slide');
+	});
+
+	$(".panel-footer").hover(function() {
+		$(this).find("button").stop().fadeIn("fast");
+	},
+	function() {
+		$(this).find("button").stop().fadeOut("fast");
+	});
+
+	$(".panel-footer").hover(function() {
+		$(this).find("button").stop().fadeIn("fast");
+	},
+	function() {
+		$(this).find("button").stop().fadeOut("fast");
+	});
+
+	$(".blockbutton").hover(function() {
+		$('.buttontext',this).stop().show('slide');
+	},
+	function() {
+		$('.buttontext',this).stop().hide('slide');
 	});
 });
 </script>
