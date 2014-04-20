@@ -11,7 +11,7 @@ class StoryController < ApplicationController
     @story = Story.find(id)
 
     # Make sure user has permission to view this
-    if current_user && @story.users.include?(current_user)
+    if current_user && current_user.stories.includes(@story)
       @blocks = @story.blocks.all
       @users = @story.users.all
     
@@ -81,11 +81,9 @@ class StoryController < ApplicationController
   def show
   	id = params[:id]
     @story = Story.find(id)
-    @users = @story.users
-    @lastedited = @story.blocks.order("created_at").last
-    if !@lastedited
-      @lastedited = @story
-    end
+    #@block = @story.blocks.build
+    @blocks = @story.blocks.all
+    @users = @story.users.all
   end
 
   private
