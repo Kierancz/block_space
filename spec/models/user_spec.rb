@@ -57,5 +57,5 @@ describe User do
   	end
 
     describe "Login user" do
-      
+    end
 end

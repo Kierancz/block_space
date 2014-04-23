@@ -67,7 +67,7 @@ $(document).ready(function(){
 		</p>
 	</div>
 	<div class="col-md-6 pull-right smalltext" style="text-align:right">
-		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") %></p>
+		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") unless @lastedited.updated_at.blank? %></p>
 	</div>
 </div>
 

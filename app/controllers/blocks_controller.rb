@@ -3,22 +3,24 @@ class BlocksController < ApplicationController
 
 
   def new
+    @story = Story.find(params[:story_id])
   	@block = Block.new(:user => current_user)
   end
 
   def create
-  	@story = Story.find(params[:story_id])
+    @story = Story.find(params[:story_id])
+    @block = Block.find(params[:id])
     @maxnum = @story.blocks.order('number').last.number
-  	@block = @story.blocks.create(block_params)
-  	@block.user = current_user
+    @block = @story.blocks.create(block_params)
+    @block.user = current_user
     @block.number = @maxnum + 1
-  	@block.save
-  	if @block.save
-  		flash.now[:success] = "Block created!"
-  		redirect_to @story
-  	else
-  		render 'new'
-  	end
+    @block.save
+    if @block.save
+      flash.now[:success] = "Block created!"
+      redirect_to @story
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -33,17 +35,17 @@ class BlocksController < ApplicationController
   def update
     @story = Story.find(params[:story_id])
     if @story && current_user && @story.users.include?(current_user)
-     @block = Block.find(params[:id])
-     if @block.update_attributes(block_params)
-      flash.now[:success] = "Block updated!"
-      redirect_to @story
-    else 
-      render 'edit'
+      @block = Block.find(params[:id])
+      if @block.update_attributes(block_params)
+        flash.now[:success] = "Block updated!"
+        redirect_to @story
+      else 
+        render 'edit'
+      end
+    else
+      redirect_to controller: "story", action: "index"
     end
-  else
-    redirect_to controller: "story", action: "index"
   end
-end
 
   def destroy
     @story = Story.find(params[:story_id])
@@ -58,6 +60,17 @@ end
       end
      redirect_to @story
    end
+  end
+
+  def insert
+    @story = Story.find(params[:story_id])
+    @block = Block.find(params[:id])
+    @block.number = @block.number + 1
+    @i = @block.number
+    @story.blocks.order('number').each do |block|
+      block.update_attribute(:number, @i)
+      @i = @i + 1
+    end
   end
 
   private
