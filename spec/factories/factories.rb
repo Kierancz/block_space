@@ -1,15 +1,15 @@
 FactoryGirl.define do
   factory :user do
-    username     "Example User"
-    email    "example@gmail.com"
+    username     "ExampleUser"
+    email  "exampleuser@gmail.com"
     password "foobar"
     password_confirmation "foobar"
   end
 
   factory :story do
-  	user
   	title 		"Test Title"
   	description 	"This is a test for description"
+  	user
   end
 
   factory :invalid_story do
@@ -24,7 +24,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_block do
-  	content 	nil
+  	content 
   end
 
 end

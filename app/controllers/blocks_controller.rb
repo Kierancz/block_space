@@ -9,11 +9,17 @@ class BlocksController < ApplicationController
 
   def create
     @story = Story.find(params[:story_id])
-    @block = Block.find(params[:id])
     @maxnum = @story.blocks.order('number').last.number
     @block = @story.blocks.create(block_params)
     @block.user = current_user
-    @block.number = @maxnum + 1
+    # If block is not to be inserted, create block at end of the list
+    if session[:insertblock] == 0
+      @block.number = @maxnum + 1
+    else #Otherwise :insertblock = number of the block to be inserted
+      @block.number = session[:insertblock]
+    end
+    session[:insertblock] = 0
+
     @block.save
     if @block.save
       flash.now[:success] = "Block created!"
@@ -64,12 +70,19 @@ class BlocksController < ApplicationController
 
   def insert
     @story = Story.find(params[:story_id])
-    @block = Block.find(params[:id])
-    @block.number = @block.number + 1
-    @i = @block.number
-    @story.blocks.order('number').each do |block|
-      block.update_attribute(:number, @i)
-      @i = @i + 1
+    if current_user && @story.users.include?(current_user)
+      @block = Block.find(params[:id])
+      @block.number = @block.number + 1
+      session[:insertblock] = @block.number
+      @blocknum = @block.number
+
+
+      @i = @blocknum + 1
+      @story.blocks.order('number').each do |block|
+        next if block.number < @blocknum
+        block.update_attribute(:number, @i)
+        @i = @i + 1
+      end
     end
   end
 
