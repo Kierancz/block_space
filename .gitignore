@@ -11,7 +11,7 @@
 
 # Ignore all rspec coverage 
 /coverage.data
-/coverage/
+/coverage
 
 # Ignore other unneeded files.
 database.yml
