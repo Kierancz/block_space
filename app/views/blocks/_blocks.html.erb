@@ -16,14 +16,14 @@
 
 				</span>
 				<span class="pull-right blockbutton">
-				<%= button_to(edit_story_block_path(@story, block), :method => "get", :class => 'btn btn-xs btn-primary') do %>
+				<%= button_to(edit_story_block_path(@story, block), :method => "get", :class => 'btn btn-xs btn-warning') do %>
 				<span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
 				<% end %>
 				</span>
 
 				<span class="pull-right blockbutton">
 				<%= button_to({:controller => :blocks, :action => 'insert', :id => block.id, :story_id => @story.id, :number => block.number}, :method => :get, :class => 'btn btn-xs btn-primary') do %>
-				<span class="glyphicon glyphicon-plus"><span class="buttontext">InsertBlock</span></span>
+				<span class="glyphicon glyphicon-plus"><span class="buttontext">Insert</span></span>
 				<% end %>
 				</span>
 

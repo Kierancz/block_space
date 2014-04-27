@@ -14,7 +14,11 @@ class BlocksController < ApplicationController
     @block.user = current_user
     # If block is not to be inserted, create block at end of the list
     if session[:insertblock] == 0
-      @block.number = @maxnum + 1 unless @maxnum.blank?
+      if(@maxnum)
+        @block.number = @maxnum + 1
+      else
+        @block.number = 1;
+      end
     else #Otherwise :insertblock = number of the block to be inserted
       @block.number = session[:insertblock]
     end
