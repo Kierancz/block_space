@@ -14,8 +14,8 @@ class StoryController < ApplicationController
 
     # Make sure user has permission to view this
     if current_user && current_user.stories.includes(@story)
-      @blocks = @story.blocks.all
-      @users = @story.users.all
+      @blocks = @story.blocks
+      @users = @story.users
     
       # If parameters has a user to add to the collaboration list
       if params.has_key?(:user)
