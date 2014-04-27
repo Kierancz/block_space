@@ -3,7 +3,9 @@ class StoryController < ApplicationController
   def index
   	@stories = Story.all
     @newstory = Story.new
-	  @user_stories = current_user.stories
+    if current_user
+	     @user_stories = current_user.stories
+    end
   end
 
   def edit
