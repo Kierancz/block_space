@@ -1,25 +1,28 @@
 <% provide(:title, @user.username) %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-        <%= gravatar_for @user %>
-        <div style="float:right">
-        <h1 style="margin: 6px"><b><%= @user.username %></b></h1>
-        <h2 style="margin: 0px"><b><%= @user.email %></b></h2>
-    </div>
-
-        <hr>
     <div class="row">
     <div class="col-md-4">
-    	<center><b><h3><%= @user.stories.count %></h3></b>
-    	Stories</center>
+      <%= gravatar_for @user %>
+    </div>
+    <div class="col-md-8">
+      <h1 style="margin: 6px"><b><%= @user.username %></b></h1>
+      <h2 style="margin: 0px"><b><%= @user.email %></b></h2>
+    </div>
+  </div>
+    <hr>
+    <div class="row">
+    <div class="col-md-4">
+    	<center><h3><%= @user.stories.count %><br>
+    	<b><small>Stories</small></b></h3></center>
     </div>
     <div class="col-md-4">
-    	<center><b><h3><%= @user.blocks.count %></h3></b>
-    	Blocks</center>
+    	<center><h3><%= @user.blocks.count %><br>
+    	<b><small>Blocks</small></b></h3></center>
     </div>
     <div class="col-md-4">
-    	<center><b><h3><%= time_ago_in_words(@user.created_at.to_time) %></h3></b>
-    	Age</center>
+    	<center><h3><%= time_ago_in_words(@user.created_at.to_time) %><br>
+    	<b><small>Age</small></b></h3></center>
     </div>
 	</div>
 	<hr>
