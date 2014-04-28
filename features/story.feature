@@ -37,3 +37,15 @@ Feature: Create a new story
         Then the new collaborator will be added to the list
         When the user clicks the collaborators delete button
         Then the collaborator will be removed from the list
+
+    Scenario: Add a non-existent collaborator and one that already exists
+        Given a user is signed in
+        And the user visits the stories page
+        When the user fills out the new story form and presses submit
+        Then they should be taken to their new story
+        When the user presses the Edit Story button 
+        Then they should be taken to the Edit Story page
+        When the user enters a fake users email to the collaboration box and clicks add
+        Then the fake collaborator will not be added to the list
+        When the user enters the name of a collaborator that already exists and clicks add
+        Then the already existing collaborator will not be added to the list again

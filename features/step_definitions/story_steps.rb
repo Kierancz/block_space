@@ -65,3 +65,21 @@ end
 Then(/^the collaborator will be removed from the list$/) do
   page.should_not have_content("bob - bob@example.com")
 end
+
+When(/^the user enters a fake users email to the collaboration box and clicks add$/) do
+  fill_in "user_username", with: "fake"
+  click_button "Add"
+end
+
+Then(/^the fake collaborator will not be added to the list$/) do
+  page.should have_content("Error: Username 'fake' does not exist")
+end
+
+When(/^the user enters the name of a collaborator that already exists and clicks add$/) do
+  fill_in "user_username", with: "Example User"
+  click_button "Add"
+end
+
+Then(/^the already existing collaborator will not be added to the list again$/) do
+  page.should have_content("Error: User 'Example User' is already a collaborator")
+end

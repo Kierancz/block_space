@@ -12,19 +12,19 @@ class BlocksController < ApplicationController
     @block = @story.blocks.create(block_params)
     @maxnum = @story.blocks.order('number').last.number
     @block.user = current_user
+
     # If block is not to be inserted, create block at end of the list
-    if session[:insertblock] == 0
-      if(@maxnum)
+    if session[:insertblock]
+      if session[:insertblock] == 0
         @block.number = @maxnum + 1
-      else
-        @block.number = 1;
+      else #Otherwise :insertblock = number of the block to be inserted
+        @block.number = session[:insertblock]
       end
-    else #Otherwise :insertblock = number of the block to be inserted
-      @block.number = session[:insertblock]
+    else
+      @block.number = 1
     end
     session[:insertblock] = 0
 
-    @block.save
     if @block.save
       flash.now[:success] = "Block created!"
       redirect_to @story
