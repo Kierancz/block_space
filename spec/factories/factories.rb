@@ -1,34 +1,21 @@
 FactoryGirl.define do
-  sequence(:username) {|n| "person#{n}" }
-  sequence(:email) {|n| "person#{n}@gmail.com" }
-
-
   factory :user do
-    username
-    email
-    password "foobar"
-    password_confirmation "foobar"
+    username "foobar"
+    email "foobar@gmail.com"
+    password "foobar69"
+    password_confirmation "foobar69"
   end
 
   factory :story do
   	title 		"Test Title"
-  	description 	"This is a test for description"
+  	description 	"Test Story Description"
   	user
-  end
-
-  factory :invalid_story do
-  	description "Test for invalid story"
   end
 
   factory :block do
-  	user
-  	story
   	content		"Test data for block content"
   	association :story_id, :factory => :story
+    user
+    story
   end
-
-  factory :invalid_block do
-  	content 
-  end
-
 end

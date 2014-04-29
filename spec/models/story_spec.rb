@@ -41,7 +41,7 @@ describe Story do
   	@story.blocks.first == @block
   end
 
-  it "Should delete the block when it gets destoryed" do
+  it "Should delete the block when it gets destroyed" do
   	@story.blocks << @block
   	blockarray = @story.blocks.to_a
   	@story.destroy;
