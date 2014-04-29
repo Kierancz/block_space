@@ -1,10 +1,21 @@
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>
+
 <% if current_user && @story.users.include?(current_user) %>
 <%= form_for([@story, @story.blocks.build]) do |f| %>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
   	<h2>Add a block:</h2>
   	<div class="field">
-        <%= f.text_area :content, :rows => 5, placeholder: "Enter HTML content...", class: "form-control" %>
+        <%= f.text_area :content, :rows => 5, placeholder: "Enter HTML content...", class: "wysihtml5" %>
   	</div>
   	<%= f.submit "Create", class: "btn btn-large btn-primary" %>
   </div>
