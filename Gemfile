@@ -5,7 +5,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sprockets', '2.11.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'font-awesome-rails'
-gem 'bootstrap-wysihtml5-rails'
+gem 'bootstrap-wysihtml5-rails', github: 'asithade/bootstrap-wysihtml5-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

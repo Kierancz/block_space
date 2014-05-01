@@ -1,13 +1,4 @@
-
-<script type="text/javascript">
-  $(document).ready(function(){
-
-    $('.wysihtml5').each(function(i, elem) {
-      $(elem).wysihtml5();
-    });
-
-  })
-</script>
+<%= render "blocks/wysihtml5" %>
 
 <% if current_user && @story.users.include?(current_user) %>
 <%= form_for([@story, @story.blocks.build]) do |f| %>
