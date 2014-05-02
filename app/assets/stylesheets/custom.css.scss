@@ -17,6 +17,18 @@ $grayMediumLight: #eaeaea;
     overflow:hidden;
 }
 
+.list-group, .panel-default {
+  box-shadow: 1px 1px 5px #EEE;
+}
+
+.list-group > a:hover {
+  background: linear-gradient(#F3F3F3, #FCFCFC);
+}
+
+.list-group-item, .panel-default {
+background: linear-gradient(#FFFFFF, #F9F9F9);
+}
+
 #blockdetails {
   font-size: 1em;
   margin-bottom: 20px;

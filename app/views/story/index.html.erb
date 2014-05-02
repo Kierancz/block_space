@@ -1,11 +1,9 @@
-<h1>Stories</h1>
-<hr>
+<h1><b>Stories</b></h1>
 <div class="row">
   <div class="col-md-6">
     <% if @current_user %>
-    <center>
-      <h3>Your Stories</h3>
-    </center>
+      <h3><b>Your Stories</b></h3>
+      <hr><br>
     <div class="list-group">
         <% if @user_stories.count == 0 %>
         <center> You don't have any stories yet </center>
@@ -13,7 +11,7 @@
         <% @user_stories.each do |story| %>
         <%= link_to(story, :class => "list-group-item") do %>
       <h4 class="list-group-item-heading">
-        <%= story.title %><span class="badge pull-right"><%= story.blocks.count %> blocks</span>
+        <%= story.title %><span class="badge alert-inverse pull-right"><%= story.blocks.count %> blocks</span>
       </h4>
       <p class="list-group-item-text">
         <%= story.description %>
@@ -21,9 +19,8 @@
       <% end %>
       <% end %>
     </div>
-    <center>
-      <h3>Create New Story</h3>
-    </center>
+      <h3><b>Create New Story</b></h3>
+      <hr><br>
     <div class="panel panel-default">
       <div class="panel-body">
         <%= form_for(@newstory) do |f| %>
@@ -38,9 +35,8 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <center>
-      <h3>All Stories</h3>
-    </center>
+      <h3><b>All Stories</b></h3>
+      <hr><br>
     <div class="list-group">
       <% @stories.each do |story| %>
       <%= link_to(story, :class => "list-group-item") do %>
