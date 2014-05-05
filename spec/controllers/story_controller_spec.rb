@@ -21,13 +21,11 @@ describe StoryController do
 
 	describe "POST #create" do
 		it "creates a new story" do
-			post :create, FactoryGirl.attributes_for(:story, user: @user)
-			response.should be_success
-		end
+			user = FactoryGirl.create(:user)
+			sign_in user
 
-		it "redirects to the story show page" do
-			post :create, story: FactoryGirl.create(:story)
-			response.should redirect_to @story
+			story = Story.create(FactoryGirl.attributes_for(:story, user: @user))
+			assert story.save
 		end
 	end
 end
