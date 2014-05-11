@@ -18,6 +18,7 @@ describe StoryController do
 		end
 	end
 
+<<<<<<< Updated upstream
 
 	describe "POST #create" do
 		it "creates a new story" do
@@ -28,4 +29,6 @@ describe StoryController do
 			assert story.save
 		end
 	end
+=======
+>>>>>>> Stashed changes
 end
