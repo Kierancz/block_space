@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-6">
     <% if @current_user %>
-      <h3><b>Your Stories</b></h3>
+      <center><h3><b>Your Stories</b></h3></center>
       <hr><br>
     <div class="list-group">
         <% if @user_stories.count == 0 %>
@@ -19,7 +19,7 @@
       <% end %>
       <% end %>
     </div>
-      <h3><b>Create New Story</b></h3>
+      <center><h3><b>Create New Story</b></h3></center>
       <hr><br>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -35,7 +35,7 @@
     <% end %>
   </div>
   <div class="col-md-6">
-      <h3><b>All Stories</b></h3>
+      <center><h3><b>All Stories</b></h3></center>
       <hr><br>
     <div class="list-group">
       <% @stories.each do |story| %>

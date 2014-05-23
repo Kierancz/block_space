@@ -7,7 +7,8 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'font-awesome-rails'
 gem 'bootstrap-wysihtml5-rails', github: 'asithade/bootstrap-wysihtml5-rails'
 gem 'remotipart', '~> 1.2'
-gem "imgurruby", "~> 0.0.3"
+gem 'imgurruby', :git => 'https://github.com/asithade/imgur-ruby'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 	has_and_belongs_to_many :stories, -> { uniq }
 	has_many :blocks
 
@@ -9,7 +13,6 @@ class User < ActiveRecord::Base
   	validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  	has_secure_password
   	validates :password, length: { minimum: 6 }
 
   	def User.new_remember_token

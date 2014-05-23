@@ -90,6 +90,9 @@ class StoryController < ApplicationController
     end
   end
 
+  def permissions
+  end
+
   private
 
     def story_params

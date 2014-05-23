@@ -12,9 +12,14 @@
       		<%= f.label :description %>
       		<%= f.text_area :description, :rows => 3, class: "form-control" %>
 
+          <%= render "story/contributers" %>
       		<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %><br><br>
+
+          <%= f.label :permissions do %>
+            <%= f.check_box :permissions %>
+            Public - Story is listed publicly, anyone can view it <%= link_to " ", {:controller => "story", :action => "permissions", :id => @story.id} %>
+          <% end %>
       		<% end %>
-      		<%= render "story/contributers" %>
       		<%= button_to('Delete Story', { :action => "destroy", :id => @story.id },
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: "btn btn-large btn-danger") %>
 		</div>

@@ -1,6 +1,5 @@
 class BlocksController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy, :new, :edit, :update]
-
+  before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
 
   def new
     @story = Story.find(params[:story_id])

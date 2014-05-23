@@ -3,6 +3,7 @@ class AddStoriesUsersTable < ActiveRecord::Migration
   	create_table :stories do |t|
       		t.string :title
       		t.text :description
+          t.string :permissions
 
       		t.timestamps
       	end
