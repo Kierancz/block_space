@@ -9,6 +9,10 @@ gem 'bootstrap-wysihtml5-rails', github: 'asithade/bootstrap-wysihtml5-rails'
 gem 'remotipart', '~> 1.2'
 gem 'imgurruby', :git => 'https://github.com/asithade/imgur-ruby'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

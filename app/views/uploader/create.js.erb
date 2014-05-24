@@ -1,0 +1,6 @@
+// Display a Javascript alert
+<% if remotipart_submitted? %>
+  $('#imgurl').val('<%= @url.to_s %>');
+  $('#FileUploader').resetForm();  // reset form
+  $('#uploadButton').removeAttr('disabled'); //enable submit button
+<% end %>
