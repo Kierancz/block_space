@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FinalpApp::Application.config.secret_key_base = 'a433abc767992d054448677df25e3b79ae7316f3ccad9e9953c45821fdae9d3e83eff454a9bb6dc68d27b5c5d070dd030359b4b81b23c9360773569c46670807'
+BlockSpace::Application.config.secret_key_base = 'a433abc767992d054448677df25e3b79ae7316f3ccad9e9953c45821fdae9d3e83eff454a9bb6dc68d27b5c5d070dd030359b4b81b23c9360773569c46670807'

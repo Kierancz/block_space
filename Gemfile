@@ -13,6 +13,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
+gem 'mailcatcher'
+gem 'rename'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

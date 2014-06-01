@@ -1,4 +1,4 @@
-FinalpApp::Application.configure do
+BlockSpace::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -80,20 +80,12 @@ FinalpApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #for devise
-  config.action_mailer.default_url_options = { host: 'final-app.herokuapp.com' }
-
-  # Email
+  config.action_mailer.default_url_options = { host: 'blockspace.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => config.app_domain }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com', 
-    port: '587',
-    enable_starttls_auto: true,
-    user_name: '',
-    password: '',
-    authentication => :plain,
-    domain => 'somedomain.com'
+    :address => "127.0.0.1",
+    :port    => 25,
+    :domain  => 'blockspace.herokuapp.com'
   }
 
 end

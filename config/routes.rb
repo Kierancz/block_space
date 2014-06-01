@@ -1,10 +1,9 @@
-FinalpApp::Application.routes.draw do
+BlockSpace::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   devise_scope :users do
     get "signup",           to: "devise/registrations#new"
     get "/users/:id",       to: "users#show"
-    #get "/users/:id/edit",  to: "devise/registrations#edit"
   end
   resources :users #, :only => [:show]
   resources :story do
@@ -14,9 +13,6 @@ FinalpApp::Application.routes.draw do
   
   root 'pages#home'
   #match '/signup',                      to: 'devise/users#new',         via: 'get'
-  #match '/signin',                      to: 'devise/sessions#new',      via: 'get'
-  #match '/signout',                     to: 'users#destroy',            via: 'delete'
-  #match 'users/:id',                    to: 'users#show',               via: 'get'
   match '/story/:story_id/blocks/:id',  to: 'blocks#destroy',           via: 'delete'
   match '/story/:story_id/blocks/:id/insert',  to: 'blocks#insert',     via: 'get'
   match '/stories',                     to: 'story#index',              via: 'get'

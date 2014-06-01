@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-FinalpApp::Application.load_tasks
+BlockSpace::Application.load_tasks
