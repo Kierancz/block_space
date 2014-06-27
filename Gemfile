@@ -13,12 +13,12 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
-gem 'mailcatcher'
 gem 'rename'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
+  gem 'mailcatcher'
   gem 'thin'
 end
 
