@@ -9,10 +9,8 @@ BlockSpace::Application.routes.draw do
   resources :story do
     resources :blocks
   end
-  #resources :sessions, only: [:new, :create, :destroy]
   
   root 'pages#home'
-  #match '/signup',                      to: 'devise/users#new',         via: 'get'
   match '/story/:story_id/blocks/:id',  to: 'blocks#destroy',           via: 'delete'
   match '/story/:story_id/blocks/:id/insert',  to: 'blocks#insert',     via: 'get'
   match '/stories',                     to: 'story#index',              via: 'get'
