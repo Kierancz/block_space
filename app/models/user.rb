@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
 	has_and_belongs_to_many :stories, -> { uniq }
-	has_many :blocks, :
+	has_many :blocks
 
   	#before_save { self.email = email.downcase }
     #before_create :create_remember_token
