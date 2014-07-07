@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.0'
 
 gem 'rails', '4.0.4'
 gem 'sass', '3.2.13'
@@ -21,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'mailcatcher'
   gem 'thin'
+  gem 'foreman'
 end
 
 group :test do

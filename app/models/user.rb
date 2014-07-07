@@ -11,22 +11,27 @@ class User < ActiveRecord::Base
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
 	has_and_belongs_to_many :stories, -> { uniq }
-	has_many :blocks
+	has_many :blocks, :
 
-  	before_save { self.email = email.downcase }
-    before_create :create_remember_token
-  	validates :username, presence: true, length: { maximum: 50 }
-  	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  	validates :email, presence:   true,
-                    format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-  	validates :password, length: { minimum: 6 }
+  	#before_save { self.email = email.downcase }
+    #before_create :create_remember_token
+  	#validates :username, presence: true, length: { maximum: 50 }
+  	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  	#validates :email, presence:   true,
+      #              format:     { with: VALID_EMAIL_REGEX },
+     #               uniqueness: { case_sensitive: false }
+  	#validates :password, length: { minimum: 6 }
 
     def self.find_for_oauth(auth, signed_in_resource = nil)
 
       #Get the identity and user if they exist
       identity = Identity.find_for_oauth(auth)
-      user = identity.user ? identity.user : signed_in_resource
+      
+      # If a signed_in_resource is provided it always overrides the existing user
+      # to prevent the identity being locked with accidentally created accounts.
+      # Note that this may leave zombie accounts (with no associated identity) which
+      # can be cleaned up at a later date.
+      user = signed_in_resource ? signed_in_resource : identity.user
 
       # Create the user if needed
       if user.nil?
@@ -59,17 +64,21 @@ class User < ActiveRecord::Base
       user
     end
 
-  	def User.new_remember_token
-  		SecureRandom.urlsafe_base64
-  	end
+    def email_verified?
+      self.email && self.email !~ TEMP_EMAIL_REGEX
+    end
 
-  	def User.hash(token)
-  		Digest::SHA1.hexdigest(token.to_s)
-  	end
+  	#def User.new_remember_token
+  	#	SecureRandom.urlsafe_base64
+  	#end
+
+  	#def User.hash(token)
+  	#	Digest::SHA1.hexdigest(token.to_s)
+  	#end
 
   	private
 
-  		def create_remember_token
-  			self.remember_token = User.hash(User.new_remember_token)
-  		end
+  		#def create_remember_token
+  		#	self.remember_token = User.hash(User.new_remember_token)
+  		#end
 end
