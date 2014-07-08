@@ -3,13 +3,17 @@
 <% if current_user && @story.users.include?(current_user) %>
 <%= form_for([@story, @story.blocks.build]) do |f| %>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-  	<h2>Add a block:</h2>
-  	<div class="field">
-        <%= f.text_area :content, :rows => 5, placeholder: "Enter HTML content...", class: "wysihtml5" %>
+  	<div class="col-md-8 col-md-offset-2">
+  		<h2>Add a block:</h2>
+  		<div class="panel panel-default">
+      		<div class="panel-body">
+        		<%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text or hit the "Edit HTML" button to add HTML content...', class: "wysihtml5" %>
+        	<%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  			</div>
+  		</div>
   	</div>
-  	<%= f.submit "Create", class: "btn btn-large btn-primary" %>
-  </div>
 </div>
 <% end %>
 <% end %>
+
+

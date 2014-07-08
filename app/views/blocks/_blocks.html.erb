@@ -1,7 +1,7 @@
 <% @story.blocks.order('number').each do |block| %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-default storyblock">
+		<div class="panel panel-default">
 			<div class="panel-body">
   				<% if block.content.include?("iframe") %>
   					<div class="embed-responsive embed-responsive-16by9">

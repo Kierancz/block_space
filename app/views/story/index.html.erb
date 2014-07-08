@@ -1,8 +1,8 @@
-<h1><b>Stories</b></h1>
+<h1><b>Spaces</b></h1>
 <div class="row">
   <div class="col-md-6">
     <% if @current_user %>
-      <center><h3><b>Your Stories</b></h3></center>
+      <center><h3><b>My Spaces</b></h3></center>
       <hr><br>
     <div class="list-group">
         <% if @user_stories.count == 0 %>
@@ -19,7 +19,8 @@
       <% end %>
       <% end %>
     </div>
-      <center><h3><b>Create New Story</b></h3></center>
+
+      <center><h3><b>New Space</b></h3></center>
       <hr><br>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -34,8 +35,9 @@
     </div>
     <% end %>
   </div>
+
   <div class="col-md-6">
-      <center><h3><b>All Stories</b></h3></center>
+      <center><h3><b>All Spaces</b></h3></center>
       <hr><br>
     <div class="list-group">
       <% @stories.each do |story| %>
