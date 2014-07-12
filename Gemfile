@@ -16,13 +16,13 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'rename'
+gem 'unicorn'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
   gem 'mailcatcher'
   gem 'thin'
-  gem 'foreman'
 end
 
 group :test do
