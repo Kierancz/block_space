@@ -17,6 +17,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'rename'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'sqlite3'
