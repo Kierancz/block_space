@@ -9,11 +9,12 @@ class BlocksController < ApplicationController
   def create
     @story = Story.find(params[:story_id])
     @block = @story.blocks.create(block_params)
-    @maxnum = @story.blocks.order('number').last.number
+    #@maxnum = @story.blocks.order('number').last.number
+    @maxnum = @story.blocks.length - 1
     @block.user = current_user
 
-    # If block is not to be inserted, create block at end of the list
     if session[:insertblock]
+      # If block is not to be inserted, create block at end of the list
       if session[:insertblock] == 0
         if @maxnum.blank?
           @block.number = 1
