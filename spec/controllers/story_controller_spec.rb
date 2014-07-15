@@ -17,18 +17,4 @@ describe StoryController do
 			response.should render_template("story/index")
 		end
 	end
-
-<<<<<<< Updated upstream
-
-	describe "POST #create" do
-		it "creates a new story" do
-			user = FactoryGirl.create(:user)
-			sign_in user
-
-			story = Story.create(FactoryGirl.attributes_for(:story, user: @user))
-			assert story.save
-		end
-	end
-=======
->>>>>>> Stashed changes
 end
