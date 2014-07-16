@@ -1,5 +1,5 @@
 Given(/^a user is signed in$/) do
-  visit signin_path
+  visit '/users/sign_in'
   @user = User.create(username: "Example User", email: "user@example.com",
                       password: "foobar", password_confirmation: "foobar")
   fill_in "Email",    with: @user.email
@@ -12,8 +12,8 @@ Given(/^the user visits the stories page$/) do
 end
 
 When(/^the user fills out the new story form and presses submit$/) do
-  fill_in "Title",    with: "New Story Title"
-  fill_in "Description", with: "The New Story Description"
+  fill_in "Title",    with: "New Space Title"
+  fill_in "Description", with: "The New Space Description"
   click_button "Create New Story"
 end
 

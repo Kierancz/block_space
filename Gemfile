@@ -18,6 +18,8 @@ gem 'omniauth-linkedin'
 gem 'rename'
 gem 'unicorn'
 gem 'newrelic_rpm'
+gem 'cancan'
+gem 'in_place_editing'
 
 group :development, :test do
   gem 'sqlite3'

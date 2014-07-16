@@ -1,10 +1,10 @@
 Given(/^the user visits a story they can edit$/) do
+	visit '/stories'
+  fill_in "Title",    with: "New Space Title"
+	fill_in "Description", with: "Description"
+	click_button "Create New Space"
 	visit stories_path
-	fill_in "Title",    with: "New Story Title"
-  	fill_in "Description", with: "Description"
-  	click_button "Create New Story"
-  	visit stories_path
-  	first('.list-group-item').click
+	first('.list-group-item').click
 end
 
 When(/^the user fills out the new block form and presses submit$/) do

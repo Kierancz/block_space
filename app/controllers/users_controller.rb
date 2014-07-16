@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params) #not the final implemenation
 		if @user.save
 			sign_in @user
-			flash[:success] = "Welcome to Story Blocks!"
+			flash[:success] = "Welcome to Blokkspace!"
 			redirect_to @user
 		else
 			render 'new'

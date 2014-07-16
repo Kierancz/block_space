@@ -1,5 +1,5 @@
 Given /^a user visits the signin page$/ do
-  visit signin_path
+  visit '/users/sign_in'
 end
 
 When /^they submit invalid signin information$/ do
@@ -26,11 +26,11 @@ Then /^they should see their profile page$/ do
 end
 
 Then /^they should see a signout link$/ do
-  expect(page).to have_link('Sign out', href: signout_path)
+  expect(page).to have_link('Sign out', href: destroy_user_session_path)
 end
 
 When(/^the user presses the signout link$/) do
-  click_link('Sign out', href: signout_path)
+  click_link('Sign out', href: destroy_user_session_path)
 end
 
 Then(/^the user will be on the index page$/) do
@@ -55,7 +55,7 @@ Then(/^his\/her account will be created$/) do
 end
 
 Given(/^a user is logged in and wants to change their password$/) do
-  visit signin_path
+  visit '/users/sign_in'
   @user = User.create(username: "Example User", email: "user@example.com",
                       password: "foobar", password_confirmation: "foobar")
   fill_in "Email",    with: @user.email

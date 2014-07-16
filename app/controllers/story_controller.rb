@@ -1,4 +1,5 @@
 class StoryController < ApplicationController
+  #in_place_edit_for :story, :collaborator
 	
   def index
   	@stories = Story.all
@@ -50,6 +51,7 @@ class StoryController < ApplicationController
     @story = Story.find(params[:id])
     if @story.update_attributes(story_params)
       redirect_to @story
+      flash[:success] = "Space successfully updated!"
     else
       render :action => 'edit'
     end
@@ -59,9 +61,9 @@ class StoryController < ApplicationController
     @story = Story.find(params[:id])
     if current_user && @story.users.include?(current_user)
       if @story.destroy()
-        flash[:success] = "Story \'" + @story.title + "\' has been deleted."
+        flash[:success] = "Space \'" + @story.title + "\' has been deleted."
       else
-        flash[:danger] = "Story failed to be deleted. Please try again later."
+        flash[:danger] = "Space failed to be deleted. Please try again later."
       end
     end
     redirect_to action: "index"
@@ -88,9 +90,6 @@ class StoryController < ApplicationController
     if !@lastedited
       @lastedited = @story
     end
-  end
-
-  def permissions
   end
 
   private

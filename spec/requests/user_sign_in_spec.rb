@@ -15,4 +15,8 @@ describe "user sign in" do
 
     page.should have_content("Signed in successfully.")
   end
+
+	it "allows users to sign out after they have signed in" do
+        click_button "Sign out"  
+    end
 end

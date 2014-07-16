@@ -6,7 +6,7 @@
       <hr><br>
     <div class="list-group">
         <% if @user_stories.count == 0 %>
-        <center> You don't have any stories yet </center>
+        <center> You don't have any spaces yet </center>
         <% end %>
         <% @user_stories.each do |story| %>
         <%= link_to(story, :class => "list-group-item") do %>
@@ -29,7 +29,7 @@
         <%= f.text_field :title, class: "form-control" %>
         <%= f.label :description %>
         <%= f.text_area :description, :rows => 3, class: "form-control" %>
-        <%= f.submit "Create New Story", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Create New Space", class: "btn btn-large btn-primary" %>
         <% end %>
       </div>
     </div>
