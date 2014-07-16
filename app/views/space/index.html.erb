@@ -1,0 +1,59 @@
+<h1><b>Spaces</b></h1>
+<div class="row">
+  <div class="col-md-6">
+    <% if @current_user %>
+      <center><h3><b>My Spaces</b></h3></center>
+      <hr><br>
+    <div class="list-group">
+        <% if @user_spaces.count == 0 %>
+        <center> You don't have any spaces yet </center>
+        <% end %>
+        <% @user_spaces.each do |space| %>
+        <%= link_to(space, :class => "list-group-item") do %>
+      <h4 class="list-group-item-heading">
+        <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> blocks</span>
+      </h4>
+      <p class="list-group-item-text">
+        <%= space.description %>
+      </p>
+      <% end %>
+      <% end %>
+    </div>
+
+      <center><h3><b>New Space</b></h3></center>
+      <hr><br>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(@newspace) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+        <%= f.label :description %>
+        <%= f.text_area :description, :rows => 3, class: "form-control" %>
+        <%= f.submit "Create New Space", class: "btn btn-large btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+  <div class="col-md-6">
+  <% else %>
+  <div class="col-md-6 col-md-offset-3">
+  <% end %>
+      <center><h3><b>All Spaces</b></h3></center>
+      <hr><br>
+    <div class="list-group">
+      <% @spaces.each do |space| %>
+      <%= link_to(space, :class => "list-group-item") do %>
+      <h4 class="list-group-item-heading">
+        <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> blocks</span>
+      </h4>
+      <p class="list-group-item-text">
+        <%= space.description %>
+      </p>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

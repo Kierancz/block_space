@@ -1,0 +1,75 @@
+<script>
+$(document).ready(function(){
+	$("#editlink").hide();
+	$("#edittext").hide();
+	$(".panel-footer").find("button").hide();
+	$(".buttontext").hide();
+
+
+	$("#titlesection").hover(function () {
+		$("#editlink").stop().fadeIn("fast");
+	},
+	function () {
+		$("#editlink").stop().fadeOut("fast");
+	});
+
+	$("#editlink").hover(function () {
+		$("#edittext").stop().show('slide');
+	},
+	function () {
+		$("#edittext").stop().hide('slide');
+	});
+
+	$(".panel-footer").hover(function() {
+		$(this).find("button").stop().fadeIn("fast");
+	},
+	function() {
+		$(this).find("button").stop().fadeOut("fast");
+	});
+
+	$(".panel-footer").hover(function() {
+		$(this).find("button").stop().fadeIn("fast");
+	},
+	function() {
+		$(this).find("button").stop().fadeOut("fast");
+	});
+
+	$(".blockbutton").hover(function() {
+		$('.buttontext',this).stop().show('slide');
+	},
+	function() {
+		$('.buttontext',this).stop().hide('slide');
+	});
+});
+</script>
+
+<div id="titlesection">
+	<% if current_user && @space.users.include?(current_user) %>
+	<span id="editlink" class="pull-right">
+		<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-xs btn-primary') do %>
+			<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
+		<% end %>
+	</span>
+	<% end %>
+	<h1><b><%= @space.title %></b><br>
+		<small><%= @space.description %></small>
+	</h1>
+</div>
+<hr>
+
+
+<div class="row">
+	<div class="col-md-6 smalltext">
+		<p><b>Contributors: </b>
+ 			<% @users.each do |user| %>
+ 			<%= link_to user.username, user %>
+ 			<% end %>
+		</p>
+	</div>
+	<div class="col-md-6 pull-right smalltext" style="text-align:right">
+		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") unless @lastedited.updated_at.blank? %></p>
+	</div>
+</div>
+
+<%= render "blocks/blocks" %>
+<%= render "blocks/form" %>

@@ -1,0 +1,20 @@
+<label>Contributors</label>
+<ul class="list-group">
+<% @space.users.each do |contributor| %>
+<li class="list-group-item">
+	<span><%= link_to " ", {:controller => "space", :action => "removecollaborator", :id => @space.id, :contributor => contributor.id }, :class => 'glyphicon glyphicon-remove pull-right'%></span>
+	<%= contributor.username %> -  <%= contributor.email %>
+</li>
+<% end %>
+<li class="list-group-item">
+	<label>Add new contributor</label>
+	<%= form_for :user, :html => {:method => :post} do |f| %>
+		<div class="input-group">
+			<%= f.text_field :username, class: "form-control" %>
+			<span class="input-group-btn">
+				<%= f.submit "Add", class: "btn btn-large btn-primary" %>
+			</span>
+		</div>
+	<% end %>
+</li>
+</ul>
