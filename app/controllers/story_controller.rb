@@ -21,12 +21,19 @@ class StoryController < ApplicationController
       # If parameters has a user to add to the collaboration list
       if params.has_key?(:user)
         puts params[:user][:username]
-        collaborator = User.where(username: params[:user][:username]).take
 
+        collaborator = User.where(username: params[:user][:username]).take
+        #if username is not found, try email
         if !collaborator
-          flash.now[:danger] = 'Error: Username \'' + params[:user][:username] + '\' does not exist'
+          collaborator = User.where(email: params[:user][:username]).take
+        end
+        #if username and email are not found, user doesn't exist
+        if !collaborator
+          flash.now[:danger] = 'Error: User \'' + params[:user][:username] + '\' does not exist'
+        #check to see if collaborator has already been added
         elsif @users.map(&:id).include? collaborator.id
           flash.now[:danger] = 'Error: User \'' + params[:user][:username] + '\' is already a collaborator'
+        #the user is added as collaborator
         else
           @story.users << collaborator
         end
@@ -38,13 +45,15 @@ class StoryController < ApplicationController
     @story = Story.find(params[:id])
 
     # Make sure current user has permission to remove collaborators
-    if current_user.stories.includes(@story)
+    if current_user.stories.includes(@story) && (@story.users.count > 1)
       deleteuser = User.find(params[:contributor])
       if deleteuser
         @story.users.delete(deleteuser)
       end
-      redirect_to [:edit, @story]
+    else     #trying to delete the only contributer
+      flash[:danger] = "A Space cannot have zero contributors."
     end
+    redirect_to [:edit, @story]
   end
 
   def update
