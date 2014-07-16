@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20140524041830) do
   create_table "blocks", force: true do |t|
     t.integer  "number"
     t.text     "content"
-    t.integer  "story_id"
+    t.integer  "space_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "blocks", ["story_id", "user_id"], name: "index_blocks_on_story_id_and_user_id"
+  add_index "blocks", ["space_id", "user_id"], name: "index_blocks_on_space_id_and_user_id"
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140524041830) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
-  create_table "stories", force: true do |t|
+  create_table "spaces", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "permissions"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20140524041830) do
     t.datetime "updated_at"
   end
 
-  create_table "stories_users", force: true do |t|
-    t.integer "story_id"
+  create_table "spaces_users", force: true do |t|
+    t.integer "space_id"
     t.integer "user_id"
   end
 

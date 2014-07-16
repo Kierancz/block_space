@@ -34,7 +34,7 @@ When(/^the user presses the signout link$/) do
 end
 
 Then(/^the user will be on the index page$/) do
-   expect(page.has_content?("Welcome to Story Blocks"))
+   expect(page.has_content?("Welcome to Blokkspace"))
 end
 
 Given(/^a user wants to make an account and visits the sign up page$/) do
@@ -51,7 +51,7 @@ end
 
 Then(/^his\/her account will be created$/) do
   expect(User.count == 1)
-  expect(page.has_content?("Welcome to Story Blocks"))
+  expect(page.has_content?("Welcome to Blokkspace"))
 end
 
 Given(/^a user is logged in and wants to change their password$/) do

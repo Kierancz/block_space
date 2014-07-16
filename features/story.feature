@@ -1,38 +1,38 @@
-Feature: Create a new story
+Feature: Create a new space
 
-	Scenario: Create new story
+	Scenario: Create new space
         Given a user is signed in
-        And the user visits the stories page
-        When the user fills out the new story form and presses submit
-        Then they should be taken to their new story
+        And the user visits the spaces page
+        When the user fills out the new space form and presses submit
+        Then they should be taken to their new space
 
-    Scenario: Edit a story
+    Scenario: Edit a space
         Given a user is signed in
-        And the user visits the stories page
-        When the user fills out the new story form and presses submit
-        Then they should be taken to their new story
-        When the user presses the Edit Story button 
-        Then they should be taken to the Edit Story page
-        When the user edits the story description and presses save
-        Then the story's description should have changed
+        And the user visits the spaces page
+        When the user fills out the new space form and presses submit
+        Then they should be taken to their new space
+        When the user presses the Edit Space button 
+        Then they should be taken to the Edit Space page
+        When the user edits the space description and presses save
+        Then the space's description should have changed
 
-    Scenario: Delete a story
+    Scenario: Delete a space
         Given a user is signed in
-        And the user visits the stories page
-        When the user fills out the new story form and presses submit
-        Then they should be taken to their new story
-        When the user presses the Edit Story button 
-        Then they should be taken to the Edit Story page
-        When the user clicks the delete story button
-        Then the story should be deleted
+        And the user visits the spaces page
+        When the user fills out the new space form and presses submit
+        Then they should be taken to their new space
+        When the user presses the Edit Space button 
+        Then they should be taken to the Edit Space page
+        When the user clicks the delete space button
+        Then the space should be deleted
 
     Scenario: Add and remove collaborator
         Given a user is signed in
-        And the user visits the stories page
-        When the user fills out the new story form and presses submit
-        Then they should be taken to their new story
-        When the user presses the Edit Story button 
-        Then they should be taken to the Edit Story page
+        And the user visits the spaces page
+        When the user fills out the new space form and presses submit
+        Then they should be taken to their new space
+        When the user presses the Edit Space button 
+        Then they should be taken to the Edit Space page
         When the user enters a users email to the collaboration box and clicks add
         Then the new collaborator will be added to the list
         When the user clicks the collaborators delete button
@@ -40,11 +40,11 @@ Feature: Create a new story
 
     Scenario: Add a non-existent collaborator and one that already exists
         Given a user is signed in
-        And the user visits the stories page
-        When the user fills out the new story form and presses submit
-        Then they should be taken to their new story
-        When the user presses the Edit Story button 
-        Then they should be taken to the Edit Story page
+        And the user visits the spaces page
+        When the user fills out the new space form and presses submit
+        Then they should be taken to their new space
+        When the user presses the Edit Space button 
+        Then they should be taken to the Edit Space page
         When the user enters a fake users email to the collaboration box and clicks add
         Then the fake collaborator will not be added to the list
         When the user enters the name of a collaborator that already exists and clicks add

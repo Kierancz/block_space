@@ -6,18 +6,18 @@ BlockSpace::Application.routes.draw do
     get "/users/:id",       to: "users#show"
   end
   resources :users #, :only => [:show]
-  resources :story do
+  resources :space do
     resources :blocks
   end
   
   root 'pages#home'
-  match '/story/:story_id/blocks/:id',  to: 'blocks#destroy',           via: 'delete'
-  match '/story/:story_id/blocks/:id/insert',  to: 'blocks#insert',     via: 'get'
-  match '/stories',                     to: 'story#index',              via: 'get'
-  match '/stories',                     to: 'story#create',             via: 'post'
-  match '/stories/:id/destroy',         to: 'story#destroy',            via: 'delete'
-  match '/stories/removecollaborator',  to: 'story#removecollaborator', via: 'get'
-  match '/story/:id/edit',              to: 'story#edit',               via: 'post'
+  match '/space/:space_id/blocks/:id',  to: 'blocks#destroy',           via: 'delete'
+  match '/space/:space_id/blocks/:id/insert',  to: 'blocks#insert',     via: 'get'
+  match '/spaces',                     to: 'space#index',              via: 'get'
+  match '/spaces',                     to: 'space#create',             via: 'post'
+  match '/spaces/:id/destroy',         to: 'space#destroy',            via: 'delete'
+  match '/spaces/removecollaborator',  to: 'space#removecollaborator', via: 'get'
+  match '/space/:id/edit',              to: 'space#edit',               via: 'post'
   match '/help',                        to: 'pages#help',               via: 'get'
   match '/about',                       to: 'pages#about',              via: 'get'
   match '/contact',                     to: 'pages#contact',            via: 'get'

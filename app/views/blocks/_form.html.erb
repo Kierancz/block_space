@@ -1,7 +1,7 @@
 <%= render "blocks/wysihtml5" %>
 
-<% if current_user && @story.users.include?(current_user) %>
-<%= form_for([@story, @story.blocks.build]) do |f| %>
+<% if current_user && @space.users.include?(current_user) %>
+<%= form_for([@space, @space.blocks.build]) do |f| %>
 <div class="row">
   	<div class="col-md-8 col-md-offset-2">
   		<h2>Add a block:</h2>

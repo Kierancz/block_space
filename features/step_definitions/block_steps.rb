@@ -1,9 +1,9 @@
-Given(/^the user visits a story they can edit$/) do
-	visit '/stories'
+Given(/^the user visits a space they can edit$/) do
+	visit '/spaces'
   fill_in "Title",    with: "New Space Title"
 	fill_in "Description", with: "Description"
 	click_button "Create New Space"
-	visit stories_path
+	visit spaces_path
 	first('.list-group-item').click
 end
 
@@ -14,7 +14,7 @@ When(/^the user fills out the new block form and presses submit$/) do
   click_button "Create"
 end
 
-Then(/^their block should be added to the story$/) do
+Then(/^their block should be added to the space$/) do
   expect(page.has_content?("Block 1"))
   expect(page.has_content?("Block 2"))
 end
@@ -23,7 +23,7 @@ When(/^the user clicks on a block's delete button$/) do
   first('.btn-danger').click
 end
 
-Then(/^the block is removed from the story$/) do
+Then(/^the block is removed from the space$/) do
   page.should_not have_content("Block 1")
   page.should have_content("Block 2")
 end
@@ -51,7 +51,7 @@ When(/^the user creates two blocks and presses Insert on the top block$/) do
   click_button "Create"
   fill_in "block_content",    with: "Block 2"
   click_button "Create"
-  first('.storyblock').first('.btn-primary').click
+  first('.spaceblock').first('.btn-primary').click
 end
 
 Then(/^the user should be taken to the Insert Block page$/) do

@@ -1,5 +1,5 @@
 def full_title(page_title)
-  base_title = "Story Blocks"
+  base_title = "Blokkspace"
   if page_title.empty?
     base_title
   else

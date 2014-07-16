@@ -11,7 +11,7 @@ describe User do
 
   	it { should respond_to(:username) }
   	it { should respond_to(:email) }
-    it { should respond_to(:stories)}
+    it { should respond_to(:spaces)}
     it { should respond_to(:blocks)}
 
     describe "when name is not present" do

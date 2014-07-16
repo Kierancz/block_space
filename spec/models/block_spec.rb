@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Block do
 
    before(:each) do
-    @story = Story.new(title: "Test Story", description: "Test description")
+    @space = Space.new(title: "Test Space", description: "Test description")
     @user = User.new(username: "Example User", email: "user@example.com",
   					 password: "foobar", password_confirmation: "foobar")
-    @block = Block.new(content: "test", story_id: 2)
+    @block = Block.new(content: "test", space_id: 2)
 
   end
 

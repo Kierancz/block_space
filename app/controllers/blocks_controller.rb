@@ -2,14 +2,14 @@ class BlocksController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
 
   def new
-    @story = Story.find(params[:story_id])
+    @space = Space.find(params[:space_id])
   	@block = Block.new(:user => current_user)
   end
 
   def create
-    @story = Story.find(params[:story_id])
-    @block = @story.blocks.create(block_params)
-    @maxnum = @story.blocks.length - 1
+    @space = Space.find(params[:space_id])
+    @block = @space.blocks.create(block_params)
+    @maxnum = @space.blocks.length - 1
     @block.user = current_user
 
     if session[:insertblock]
@@ -34,54 +34,54 @@ class BlocksController < ApplicationController
 
     if @block.save
       flash.now[:success] = "Block created!"
-      redirect_to @story
+      redirect_to @space
     else
       render 'new'
     end
   end
 
   def edit
-    @story = Story.find(params[:story_id]) rescue nil
-    if @story && current_user && @story.users.include?(current_user)
+    @space = Space.find(params[:space_id]) rescue nil
+    if @space && current_user && @space.users.include?(current_user)
   	   @block = Block.find(params[:id])
     else
-      redirect_to controller: "story", action: "index"
+      redirect_to controller: "space", action: "index"
     end
   end
 
   def update
-    @story = Story.find(params[:story_id])
-    if @story && current_user && @story.users.include?(current_user)
+    @space = Space.find(params[:space_id])
+    if @space && current_user && @space.users.include?(current_user)
       @block = Block.find(params[:id])
       if @block.update_attributes(block_params)
         flash.now[:success] = "Block updated!"
-        redirect_to @story
+        redirect_to @space
       else 
         render 'edit'
       end
     else
-      redirect_to controller: "story", action: "index"
+      redirect_to controller: "space", action: "index"
     end
   end
 
   def destroy
-    @story = Story.find(params[:story_id])
-    if current_user && @story.users.include?(current_user)
+    @space = Space.find(params[:space_id])
+    if current_user && @space.users.include?(current_user)
      @block = Block.find(params[:id])
      @block.destroy
 
      @i = 1
-     @story.blocks.order('number').each do |block|
+     @space.blocks.order('number').each do |block|
         block.update_attribute(:number, @i)
         @i = @i + 1
       end
-     redirect_to @story
+     redirect_to @space
    end
   end
 
   def insert
-    @story = Story.find(params[:story_id])
-    if current_user && @story.users.include?(current_user)
+    @space = Space.find(params[:space_id])
+    if current_user && @space.users.include?(current_user)
       @block = Block.find(params[:id])
       @block.number = @block.number + 1
       session[:insertblock] = @block.number
@@ -89,7 +89,7 @@ class BlocksController < ApplicationController
 
 
       @i = @blocknum + 1
-      @story.blocks.order('number').each do |block|
+      @space.blocks.order('number').each do |block|
         next if block.number < @blocknum
         block.update_attribute(:number, @i)
         @i = @i + 1

@@ -13,8 +13,8 @@
     <hr>
     <div class="row">
     <div class="col-md-4">
-    	<center><h3><%= @user.stories.count %><br>
-    	<b><small>Stories</small></b></h3></center>
+    	<center><h3><%= @user.spaces.count %><br>
+    	<b><small>spaces</small></b></h3></center>
     </div>
     <div class="col-md-4">
     	<center><h3><%= @user.blocks.count %><br>
@@ -28,18 +28,18 @@
 	<hr>
 
 
-	<center><h3>Stories</h3></center>
+	<center><h3>Spaces</h3></center>
 	<div class="list-group">
-        <% if @user.stories.count == 0 %>
-        <center> You don't have any stories yet </center>
+        <% if @user.spaces.count == 0 %>
+        <center> You don't have any spaces yet </center>
         <% end %>
-        <% @user.stories.each do |story| %>
-        <%= link_to(story, :class => "list-group-item") do %>
+        <% @user.spaces.each do |space| %>
+        <%= link_to(space, :class => "list-group-item") do %>
       <h4 class="list-group-item-heading">
-        <%= story.title %><span class="badge pull-right"><%= story.blocks.count %> blocks</span>
+        <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> blocks</span>
       </h4>
       <p class="list-group-item-text">
-        <%= story.description %>
+        <%= space.description %>
       </p>
       <% end %>
       <% end %>

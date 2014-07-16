@@ -9,17 +9,17 @@ FactoryGirl.define do
     password_confirmation "foobar69"
   end
 
-  factory :story do
+  factory :space do
   	title 		"Test Title"
-  	description 	"Test Story Description"
+  	description 	"Test Space Description"
   	user
   end
 
   factory :block do
     user
-    story
+    space
   	content		"Test data for block content"
-  	association :story_id, :factory => :story
+  	association :space_id, :factory => :space
   end
 
   factory :invalid_block do
