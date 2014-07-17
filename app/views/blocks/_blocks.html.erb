@@ -3,7 +3,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-body">
-  				<% if block.content.include?("youtube" || "vimeo") %>
+  				<% if block.content.include?("youtube" || "vimeo" || "soundcloud") %>
   					<div class="embed-responsive embed-responsive-16by9">
   						<iframe class="embed-responsive-item"></iframe>
 						<%= block.content.try(:html_safe) %>
@@ -18,19 +18,19 @@
 					<%= block.created_at.localtime.strftime("%b %d, %y at %I:%M%p") %></small>
 				<% if current_user && @space.users.include?(current_user) %>
 					<span class="pull-right blockbutton">
-					<%= button_to({:controller => :blocks, :action => 'destroy', :id => block.id, :space_id => @space.id }, :method => :delete, data: { confirm: 'Are you sure you want to delete this block?' }, :class => 'btn btn-xs btn-danger') do %>
+					<%= button_to({:controller => :blocks, :action => 'destroy', :id => block.id, :space_id => @space.id }, :method => :delete, data: { confirm: 'Are you sure you want to delete this block?' }, :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-remove"><span class="buttontext">Delete</span></span>
 					<% end %>
 
 					</span>
 					<span class="pull-right blockbutton">
-					<%= button_to(edit_space_block_path(@space, block), :method => "get", :class => 'btn btn-xs btn-warning') do %>
+					<%= button_to(edit_space_block_path(@space, block), :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>
 					<% end %>
 					</span>
 
 					<span class="pull-right blockbutton">
-					<%= button_to({:controller => :blocks, :action => 'insert', :id => block.id, :space_id => @space.id, :number => block.number}, :method => :get, :class => 'btn btn-xs btn-primary') do %>
+					<%= button_to({:controller => :blocks, :action => 'insert', :id => block.id, :space_id => @space.id, :number => block.number}, :method => :get, :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-plus"><span class="buttontext">Insert</span></span>
 					<% end %>
 					</span>
