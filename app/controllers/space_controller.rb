@@ -21,7 +21,7 @@ class SpaceController < ApplicationController
       # If parameters has a user to add to the collaboration list
       if params.has_key?(:user)
         puts params[:user][:username]
-
+        #try to find my username
         collaborator = User.where(username: params[:user][:username]).take
         #if username is not found, try email
         if !collaborator
@@ -104,6 +104,6 @@ class SpaceController < ApplicationController
   private
 
     def space_params
-      params.require(:space).permit(:description, :title)
+      params.require(:space).permit(:description, :title, :users)
     end
 end

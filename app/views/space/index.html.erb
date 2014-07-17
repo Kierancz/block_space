@@ -11,7 +11,7 @@
         <% @user_spaces.each do |space| %>
         <%= link_to(space, :class => "list-group-item") do %>
       <h4 class="list-group-item-heading">
-        <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> blocks</span>
+        <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
       </h4>
       <p class="list-group-item-text">
         <%= space.description %>
@@ -47,7 +47,7 @@
       <% @spaces.each do |space| %>
       <%= link_to(space, :class => "list-group-item") do %>
       <h4 class="list-group-item-heading">
-        <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> blocks</span>
+        <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
       </h4>
       <p class="list-group-item-text">
         <%= space.description %>

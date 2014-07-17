@@ -20,6 +20,7 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'cancan'
 gem 'in_place_editing'
+gem 'simple_form'
 
 group :development, :test do
   gem 'sqlite3'
