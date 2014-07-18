@@ -3,7 +3,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-body">
-  				<% if block.content.include?("iframe") %>
+  				<% if %w(youtube vimeo soundcloud daily motion video).any? { |str| block.content.downcase.include? str } %>
   					<div class="embed-responsive embed-responsive-16by9">
   						<iframe class="embed-responsive-item"></iframe>
 						<%= block.content.try(:html_safe) %>
