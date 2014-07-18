@@ -7,8 +7,22 @@
   		<h2>Add a block:</h2>
   		<div class="panel panel-default">
       		<div class="panel-body">
-        		<%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text or hit the "Edit HTML" button to add HTML content...', class: "wysihtml5" %>
-        	<%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %>
+      			<ul class="nav nav-tabs">
+      				<li class="active"> <a href="#rich" data-target="#rich" data-toggle="tab">Rich Text Editor</a>
+      				</li>
+      				<li><a href="#html" data-target="#html" data-toggle="tab">Raw HTML Editor</a>
+      				</li>
+      			</ul>
+
+      			<div class="tab-content">
+      				<div class="tab-pane active fade in" id="rich"><br>
+        			<%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
+        			<%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %>
+        			</div>
+        			<div class="tab-pane" id="html"><br>
+        				<%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
+        			<%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %>
+        			</div>
   			</div>
   		</div>
   	</div>
