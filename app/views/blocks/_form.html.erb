@@ -4,7 +4,7 @@
 <%= form_for([@space, @space.blocks.build]) do |f| %>
 <div class="row">
   	<div class="col-md-8 col-md-offset-2">
-  		<h2>Add a block:</h2>
+  		<h2>Add a blokk:</h2>
   		<div class="panel panel-default">
       		<div class="panel-body">
       			<ul class="nav nav-tabs">
@@ -23,6 +23,7 @@
         				<%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
         			<%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %>
         			</div>
+        		</div>	
   			</div>
   		</div>
   	</div>
