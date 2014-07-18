@@ -45,7 +45,7 @@ class SpaceController < ApplicationController
     @space = Space.find(params[:id])
 
     # Make sure current user has permission to remove collaborators
-    if current_user.spaces.includes(@space) && (@space.users.count > 1)
+    if current_user.spaces.includes(@space) && (@space.users.count >= 1)
       deleteuser = User.find(params[:contributor])
       if deleteuser
         @space.users.delete(deleteuser)
@@ -60,9 +60,9 @@ class SpaceController < ApplicationController
     @space = Space.find(params[:id])
     if @space.update_attributes(space_params)
       redirect_to @space
-      flash.nows[:success] = "Space successfully updated!"
-    else
-      render :action => 'edit'
+      flash.now[:success] = "Space successfully updated!"
+    #else
+     # render :action => 'edit'
     end
   end
 
@@ -104,6 +104,6 @@ class SpaceController < ApplicationController
   private
 
     def space_params
-      params.require(:space).permit(:description, :title, :users)
+      params.require(:space).permit(:description, :title)
     end
 end
