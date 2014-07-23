@@ -3,7 +3,6 @@
 <% if current_user && @space.users.include?(current_user) %>
 <h1><b>Editing Blokk </b></h1>
 <br>
-<%= form_for([@space, @block]) do |f| %>
 <div class="row">
   	<div class="col-md-8 col-md-offset-2">
   		<div class="field">
@@ -18,12 +17,16 @@
 
             <div class="tab-content">
               <div class="tab-pane active fade in" id="rich"><br>
-              <%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
-              <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <%= form_for([@space, @block]) do |f| %>
+                <%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
+                <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <% end %>
               </div>
               <div class="tab-pane" id="html"><br>
+                <%= form_for([@space, @block]) do |f| %>
                 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
-              <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <% end %>
               </div>
       			</div>
       		</div>
@@ -31,6 +34,5 @@
   		</div>
   	</div>
 </div>
-<% end %>
 <% end %>
 
