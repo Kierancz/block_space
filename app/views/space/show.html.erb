@@ -1,8 +1,6 @@
-<script>
-$(document).ready(function(){
-
-});
-</script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "610ba9ca-9d3c-465e-8ec7-be248d5a2ce3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
 <div id="titlesection">
 	<% if current_user && @space.users.include?(current_user) %>
@@ -13,8 +11,16 @@ $(document).ready(function(){
 	</span>
 	<% end %>
 	<h1><b><%= @space.title %></b><br>
-		<small><%= @space.description %></small>
-	</h1>
+		<small><%= @space.description %></small><br>
+		<div class="col-md-6 pull-right smalltext" style="text-align:right">
+				<span class='st_facebook'></span>
+				<span class='st_googleplus'></span>
+				<span class='st_twitter'></span>
+				<span class='st_reddit'></span>
+				<span class='st_digg'></span>
+				<span class='st_email'></span>
+		</div>
+			</h1>
 </div>
 <hr>
 
@@ -28,7 +34,7 @@ $(document).ready(function(){
 		</p>
 	</div>
 	<div class="col-md-6 pull-right smalltext" style="text-align:right">
-		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y at %I:%M%p") unless @lastedited.updated_at.blank? %></p>
+		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y") unless @lastedited.updated_at.blank? %></p>
 	</div>
 </div>
 

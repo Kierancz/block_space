@@ -21,6 +21,7 @@ gem 'newrelic_rpm'
 gem 'cancan'
 gem 'in_place_editing'
 gem 'simple_form'
+gem 'shareable'
 
 group :development, :test do
   gem 'sqlite3'

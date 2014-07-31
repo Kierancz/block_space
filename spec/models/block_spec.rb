@@ -5,7 +5,7 @@ describe Block do
    before(:each) do
     @space = Space.new(title: "Test Space", description: "Test description")
     @user = User.new(username: "Example User", email: "user@example.com",
-  					 password: "foobar", password_confirmation: "foobar")
+  					 password: "foobar11", password_confirmation: "foobar11")
     @block = Block.new(content: "test", space_id: 2)
 
   end

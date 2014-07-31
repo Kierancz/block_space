@@ -24,13 +24,13 @@ class BlocksController < ApplicationController
         @block.number = session[:insertblock]
       end
     else
-      if @maxnum.blank?
+      if @maxnum == 0 #If there are no blokks in the space yet
         @block.number = 1
       else
         @block.number = @maxnum
       end
     end
-    session[:insertblock] = 0
+    session[:insertblock] = 0 #Set :insertblock back to 0 pending insertions
 
     if @block.save
       flash.now[:success] = "Block created!"
