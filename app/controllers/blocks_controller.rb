@@ -15,7 +15,7 @@ class BlocksController < ApplicationController
     if session[:insertblock]
       # If block is not to be inserted, create block at end of the list
       if session[:insertblock] == 0
-        if @maxnum.blank?
+        if @maxnum.blank? || @maxnum == 0
           @block.number = 1
         else
           @block.number = @maxnum + 1

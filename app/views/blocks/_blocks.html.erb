@@ -14,7 +14,7 @@
 			</div>
 
 			<div class="panel-footer">
-				<small>Blokk: #<%= block.number %>  Posted by: <%= block.user.username unless block.user.blank? %> on 
+				<small>Posted by: <%= block.user.username unless block.user.blank? %> on 
 					<%= block.created_at.localtime.strftime("%b %d, %y at %I:%M%p") %></small>
 				<% if current_user && @space.users.include?(current_user) %>
 					<span class="pull-right blockbutton">

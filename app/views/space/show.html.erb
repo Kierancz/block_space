@@ -1,42 +1,32 @@
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "610ba9ca-9d3c-465e-8ec7-be248d5a2ce3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-
-<div id="titlesection">
-	<% if current_user && @space.users.include?(current_user) %>
-	<span id="editlink" class="pull-right">
-		<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
-			<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
+<div class="col-xs-8 col-md-12 col-xs-offset-2 col-md-offset-0">
+	<div id="titlesection">
+		<% if current_user && @space.users.include?(current_user) %>
+		<span id="editlink" class="pull-right">
+			<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+				<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
+			<% end %>
+		</span>
 		<% end %>
-	</span>
-	<% end %>
-	<h1><b><%= @space.title %></b><br>
-		<small><%= @space.description %></small><br>
-		<div class="col-md-6 pull-right smalltext" style="text-align:right">
-				<span class='st_facebook'></span>
-				<span class='st_googleplus'></span>
-				<span class='st_twitter'></span>
-				<span class='st_reddit'></span>
-				<span class='st_digg'></span>
-				<span class='st_email'></span>
-		</div>
-			</h1>
-</div>
-<hr>
-
-
-<div class="row">
-	<div class="col-md-6 smalltext">
-		<p><b>Contributors: </b>
- 			<% @users.each do |user| %>
- 			<%= link_to user.username, user %>
- 			<% end %>
-		</p>
+		<h1><b><%= @space.title %></b><br>
+			<small><%= @space.description %></small><br>
+		</h1>
 	</div>
-	<div class="col-md-6 pull-right smalltext" style="text-align:right">
-		<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y") unless @lastedited.updated_at.blank? %></p>
+	<hr>
+
+	<div class="row">
+		<div class="col-md-6 smalltext">
+			<p><b>Contributors: </b>
+	 			<% @users.each do |user| %>
+	 			<%= link_to user.username, user %>
+	 			<% end %>
+			</p>
+		</div>
+		<div class="col-md-6 pull-right smalltext" style="text-align:right">
+			<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y") unless @lastedited.updated_at.blank? %></p>
+		</div>
 	</div>
 </div>
 
 <%= render "blocks/blocks" %>
 <%= render "blocks/form" %>
+
