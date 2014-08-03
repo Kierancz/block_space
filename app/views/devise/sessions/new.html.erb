@@ -1,24 +1,27 @@
 <% provide(:title, "Sign in") %>
 <h1>Sign in</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="container-fluid">
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-default">
+	  		<div class="panel-body">
 
-	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-	  <%= f.label :login %> <i> (Username or Email)
-	  <%= f.email_field :login, autofocus: true, class: "form-control"%>
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					  <%= f.label :login %> (Username or Email)
+					  <%= f.text_field :login, autofocus: true, class: "form-control"%>
 
-	  <%= f.label :password %>
-	  <%= f.password_field :password, autocomplete: "off", class: "form-control"%>
+					  <%= f.label :password %>
+					  <%= f.password_field :password, autocomplete: "off", class: "form-control"%>
 
-	  <% if devise_mapping.rememberable? -%>
-	    <%= f.label :remember_me do %>
-		    Remember Me? <%= f.check_box :remember_me %>
-			<% end %>
-	  <% end %>
-	  <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-	<% end %>
-  </div>
+					  <span id="submit" class="pull-left">
+					  	<%= f.submit "Sign in", class: "btn btn-large btn-primary" %></span>
+					<% end %>
+		  	</div>
+			</div>
+	  </div>
+	</div>
+
+					<%= render "devise/shared/links" %>
 </div>
 
-<%= render "devise/shared/links" %>

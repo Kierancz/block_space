@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 	end
 
 	def index
+		@users = User.all
 		authorize! :index, @user
 	end
 

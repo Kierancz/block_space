@@ -20,7 +20,14 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
-  attr_accessor :login
+
+    def login=(login)
+      @login = login
+    end
+
+    def login
+      @login || self.username || self.email
+    end
 
     def soft_delete
       update_attribute(:deleted_at, Time.current)
@@ -28,6 +35,15 @@ class User < ActiveRecord::Base
 
     def active_for_authentication?
       super && !deleted_at
+    end
+
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
     end
 
     def self.find_for_oauth(auth, signed_in_resource = nil)
