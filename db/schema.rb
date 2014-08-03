@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524041830) do
+ActiveRecord::Schema.define(version: 20140803003453) do
 
   create_table "blocks", force: true do |t|
     t.integer  "number"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140524041830) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

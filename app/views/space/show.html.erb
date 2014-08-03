@@ -17,7 +17,10 @@
 		<div class="col-md-6 smalltext">
 			<p><b>Contributors: </b>
 	 			<% @users.each do |user| %>
-	 			<%= link_to user.username, user %>
+		 			<%= link_to user.username, user %>
+		 				<% if @space.users.count > 1 %>
+		 					<b>, </b>
+		 				<% end %>
 	 			<% end %>
 			</p>
 		</div>
@@ -26,6 +29,10 @@
 		</div>
 	</div>
 </div>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53dc874307544ad8"></script>
+
 
 <%= render "blocks/blocks" %>
 <%= render "blocks/form" %>

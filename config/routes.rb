@@ -1,6 +1,6 @@
 BlockSpace::Application.routes.draw do
 
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
   devise_scope :users do
     get "signup",           to: "devise/registrations#new"
     get "/users/:id",       to: "users#show"

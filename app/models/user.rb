@@ -10,17 +10,25 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
+  validates :username,
+  :uniqueness => {
+    :case_sensitive => false
+  }
+
 	has_and_belongs_to_many :spaces, -> { uniq }
 	has_many :blocks
 
-  	#before_save { self.email = email.downcase }
-    #before_create :create_remember_token
-  	#validates :username, presence: true, length: { maximum: 50 }
-  	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  	#validates :email, presence:   true,
-      #              format:     { with: VALID_EMAIL_REGEX },
-     #               uniqueness: { case_sensitive: false }
-  	#validates :password, length: { minimum: 6 }
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
+
+    def soft_delete
+      update_attribute(:deleted_at, Time.current)
+    end
+
+    def active_for_authentication?
+      super && !deleted_at
+    end
 
     def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -46,7 +54,7 @@ class User < ActiveRecord::Base
         # Create the user if it's a new registration
         if user.nil?
           user = User.new(
-            name: auth.extra.raw_info.name,
+            username: auth.extra.raw_info.name,
             #username: auth.info.nickname || auth.uid,
             email: email ? email : TEMP_EMAIL,
             password: Devise.friendly_token[0,20]
@@ -67,14 +75,6 @@ class User < ActiveRecord::Base
     def email_verified?
       self.email && self.email !~ TEMP_EMAIL_REGEX
     end
-
-  	#def User.new_remember_token
-  	#	SecureRandom.urlsafe_base64
-  	#end
-
-  	#def User.hash(token)
-  	#	Digest::SHA1.hexdigest(token.to_s)
-  	#end
 
   	private
 

@@ -1,6 +1,6 @@
 class SpaceController < ApplicationController
-  #in_place_edit_for :space, :collaborator
-	
+  load_and_authorize_resource
+  	
   def index
   	@spaces = Space.all
     @newspace = Space.new

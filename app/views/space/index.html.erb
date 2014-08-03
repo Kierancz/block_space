@@ -6,7 +6,7 @@
       <hr><br>
     <div class="list-group">
         <% if @user_spaces.count == 0 %>
-        <center> You don't have any spaces yet </center>
+        <center> You don't have any Spaces yet </center>
         <% end %>
         <% @user_spaces.each do |space| %>
         <%= link_to(space, :class => "list-group-item") do %>
