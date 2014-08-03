@@ -6,8 +6,13 @@
       <hr><br>
     <div class="list-group">
         <% if @user_spaces.count == 0 %>
-        <center> You don't have any Spaces yet </center>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <center> You don't have any Spaces yet </center>
+            </div>
+          </div>
         <% end %>
+
         <% @user_spaces.each do |space| %>
         <%= link_to(space, :class => "list-group-item") do %>
       <h4 class="list-group-item-heading">
