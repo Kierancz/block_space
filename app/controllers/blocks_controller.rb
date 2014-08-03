@@ -1,6 +1,5 @@
 class BlocksController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
-  load_and_authorize_resource :nested => :space
 
   def new
     @space = Space.find(params[:space_id])

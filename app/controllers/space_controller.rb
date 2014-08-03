@@ -1,5 +1,4 @@
 class SpaceController < ApplicationController
-  load_and_authorize_resource
   	
   def index
   	@spaces = Space.all
@@ -22,10 +21,10 @@ class SpaceController < ApplicationController
       if params.has_key?(:user)
         puts params[:user][:username]
         #try to find my username
-        collaborator = User.where(username: params[:user][:username]).take
+        collaborator = User.where(username: params[:user][:username].downcase).take
         #if username is not found, try email
         if !collaborator
-          collaborator = User.where(email: params[:user][:username]).take
+          collaborator = User.where(email: params[:user][:username].downcase).take
         end
         #if username and email are not found, user doesn't exist
         if !collaborator
