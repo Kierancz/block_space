@@ -42,7 +42,7 @@ class BlocksController < ApplicationController
 
   def edit
     @space = Space.find(params[:space_id]) rescue nil
-    if @space && current_user && @space.users.include?(current_user)
+    if @space && current_user && (@space.users.include?(current_user) || current_user.admin?)
   	   @block = Block.find(params[:id])
     else
       redirect_to controller: "space", action: "index"
@@ -51,7 +51,7 @@ class BlocksController < ApplicationController
 
   def update
     @space = Space.find(params[:space_id])
-    if @space && current_user && @space.users.include?(current_user)
+    if @space && current_user && (@space.users.include?(current_user) || current_user.admin?)
       @block = Block.find(params[:id])
       if @block.update_attributes(block_params)
         flash.now[:success] = "Block updated!"
@@ -66,7 +66,7 @@ class BlocksController < ApplicationController
 
   def destroy
     @space = Space.find(params[:space_id])
-    if current_user && @space.users.include?(current_user)
+    if current_user && (@space.users.include?(current_user) || current_user.admin?)
      @block = Block.find(params[:id])
      @block.destroy
 
@@ -81,7 +81,7 @@ class BlocksController < ApplicationController
 
   def insert
     @space = Space.find(params[:space_id])
-    if current_user && @space.users.include?(current_user)
+    if current_user && (@space.users.include?(current_user) || current_user.admin?)
       @block = Block.find(params[:id])
       @block.number = @block.number + 1
       session[:insertblock] = @block.number

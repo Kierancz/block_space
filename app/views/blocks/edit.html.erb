@@ -19,13 +19,13 @@
               <div class="tab-pane active fade in" id="rich"><br>
                 <%= form_for([@space, @block]) do |f| %>
                 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
-                <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <span class="pull-left"><%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %></span>
                 <% end %>
               </div>
               <div class="tab-pane" id="html"><br>
                 <%= form_for([@space, @block]) do |f| %>
                 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
-                <%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %>
+                <span class="pull-left"><%= f.submit "Update Blokk", class: "btn btn-large btn-primary" %></span>
                 <% end %>
               </div>
       			</div>
