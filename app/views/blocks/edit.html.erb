@@ -1,6 +1,6 @@
 <%= render "blocks/wysihtml5" %>
 
-<% if current_user && @space.users.include?(current_user) %>
+<% if current_user && (@space.users.include?(current_user) || current_user.admin?) %>
 <h1><b>Editing Blokk </b></h1>
 <br>
 <div class="row">

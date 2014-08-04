@@ -1,11 +1,11 @@
 <div class="col-xs-8 col-md-12 col-xs-offset-2 col-md-offset-0">
 	<div id="titlesection">
-		<% if current_user && @space.users.include?(current_user) %>
-		<span id="editlink" class="pull-right">
-			<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
-				<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
-			<% end %>
-		</span>
+		<% if current_user && (@space.users.include?(current_user) || current_user.admin?) %>
+			<span id="editlink" class="pull-right">
+				<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
+					<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
+				<% end %>
+			</span>
 		<% end %>
 		<h1><b><%= @space.title %></b><br>
 			<small><%= @space.description %></small><br>
@@ -26,10 +26,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53dc874307544ad8"></script>
-
 
 <%= render "blocks/blocks" %>
 <%= render "blocks/form" %>
