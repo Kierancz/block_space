@@ -1,14 +1,17 @@
 BlockSpace::Application.routes.draw do
 
+  get "contact_form/new"
+  get "contact_form/create"
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
   devise_scope :users do
     get "signup",           to: "devise/registrations#new"
     get "/users/:id",       to: "users#show"
   end
-  resources :users #, :only => [:show]
+  resources :users
   resources :space do
     resources :blocks
   end
+  resources :contact_form
   
   root 'pages#home'
   match '/space/:space_id/blocks/:id',  to: 'blocks#destroy',           via: 'delete'

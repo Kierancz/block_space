@@ -3,41 +3,41 @@
   <div class="col-md-6">
     <% if @current_user %>
       <center><h3><b>My Spaces</b></h3></center>
-      <hr><br>
-    <div class="list-group">
-        <% if @user_spaces.count == 0 %>
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <center> You don't have any Spaces yet </center>
+        <hr><br>
+        <div class="list-group">
+          <% if @user_spaces.count == 0 %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <center> You don't have any Spaces yet </center>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
 
-        <% @user_spaces.each do |space| %>
-        <%= link_to(space, :class => "list-group-item") do %>
-      <h4 class="list-group-item-heading">
-        <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
-      </h4>
-      <p class="list-group-item-text">
-        <%= space.description %>
-      </p>
-      <% end %>
-      <% end %>
-    </div>
+          <% @user_spaces.each do |space| %>
+            <%= link_to(space, :class => "list-group-item") do %>
+              <h4 class="list-group-item-heading">
+                <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
+              </h4>
+              <p class="list-group-item-text">
+                <%= space.description %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
 
       <center><h3><b>New Space</b></h3></center>
       <hr><br>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= form_for(@newspace) do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control" %>
-        <%= f.label :description %>
-        <%= f.text_area :description, :rows => 3, class: "form-control" %>
-        <%= f.submit "Create New Space", class: "btn btn-large btn-primary" %>
-        <% end %>
-      </div>
-    </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= form_for(@newspace) do |f| %>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+            <%= f.label :description %>
+            <%= f.text_area :description, :rows => 3, class: "form-control" %>
+            <span class="pull-left"><%= f.submit "Create New Space", class: "btn btn-large btn-primary" %></span>
+            <% end %>
+          </div>
+        </div>
     <% end %>
   </div>
 

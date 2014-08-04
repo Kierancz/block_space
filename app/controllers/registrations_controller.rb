@@ -1,5 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
+
   def destroy
     resource.soft_delete
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)

@@ -17,15 +17,12 @@
 		<div class="col-md-6 smalltext">
 			<p><b>Contributors: </b>
 	 			<% @users.each do |user| %>
-		 			<%= link_to user.username, user %>
-		 				<% if @space.users.count > 1 %>
-		 					<b>, </b>
-		 				<% end %>
+		 			<%= link_to user.username, user %><%= "," unless user == @users.last %>
 	 			<% end %>
 			</p>
 		</div>
 		<div class="col-md-6 pull-right smalltext" style="text-align:right">
-			<p>Last Edited: <%= @lastedited.updated_at.localtime.strftime("%b %d, %y") unless @lastedited.updated_at.blank? %></p>
+			<p>Last Edited: <%= time_ago_in_words(@lastedited.updated_at.to_time) unless @lastedited.updated_at.blank? %> ago</p>
 		</div>
 	</div>
 </div>

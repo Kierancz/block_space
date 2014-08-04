@@ -22,6 +22,7 @@ gem 'cancan'
 gem 'in_place_editing'
 gem 'simple_form'
 gem 'shareable'
+gem 'mail_form'
 
 group :development, :test do
   gem 'sqlite3'
