@@ -13,7 +13,7 @@ class SpaceController < ApplicationController
     @space = Space.find(id)
 
     # Make sure user has permission to view this
-    if current_user && current_user.spaces.includes(@space)
+    if current_user && (current_user.spaces.includes(@space) || current_user.admin?)
       @blocks = @space.blocks
       @users = @space.users
     
@@ -44,7 +44,7 @@ class SpaceController < ApplicationController
     @space = Space.find(params[:id])
 
     # Make sure current user has permission to remove collaborators
-    if current_user.spaces.includes(@space) && (@space.users.count >= 1)
+    if (current_user.spaces.includes(@space) || current_user.admin?) && (@space.users.count >= 1)
       deleteuser = User.find(params[:contributor])
       if deleteuser
         @space.users.delete(deleteuser)
@@ -67,7 +67,7 @@ class SpaceController < ApplicationController
 
   def destroy
     @space = Space.find(params[:id])
-    if current_user && @space.users.include?(current_user)
+    if current_user && (@space.users.include?(current_user) || current_user.admin?)
       if @space.destroy()
         flash[:success] = "Space \'" + @space.title + "\' has been deleted."
       else
