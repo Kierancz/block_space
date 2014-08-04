@@ -21,10 +21,10 @@ class SpaceController < ApplicationController
       if params.has_key?(:user)
         puts params[:user][:username]
         #try to find by username
-        collaborator = User.where(username: params[:user][:username]).downcase.take
+        collaborator = User.where(username: (params[:user][:username]).downcase).take
         #if username is not found, try email
         if !collaborator
-          collaborator = User.where(email: params[:user][:username]).downcase.take
+          collaborator = User.where(email: (params[:user][:username]).downcase).take
         end
         #if username and email are not found, user doesn't exist
         if !collaborator
