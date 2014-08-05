@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
 	has_and_belongs_to_many :spaces, -> { uniq }
 	has_many :blocks
+  has_many :favorite_spaces
+  has_many :favorites, through: :favorite_spaces
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'

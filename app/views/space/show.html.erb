@@ -22,7 +22,7 @@
 			</p>
 		</div>
 		<div class="col-md-6 pull-right smalltext" style="text-align:right">
-			<p>Last Edited: <%= time_ago_in_words(@lastedited.updated_at.to_time) unless @lastedited.updated_at.blank? %> ago</p>
+			<p><b>Edited: </b><%= time_ago_in_words(@lastedited.updated_at.to_time) unless @lastedited.updated_at.blank? %> ago</p>
 		</div>
 	</div>
 </div>
