@@ -1,4 +1,4 @@
-class CreateFavoriteSpace < ActiveRecord::Migration
+class CreateFavoriteSpaces < ActiveRecord::Migration
   def change
     create_table :favorite_spaces do |t|
       t.string :space_id
