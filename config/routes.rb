@@ -10,6 +10,7 @@ BlockSpace::Application.routes.draw do
   resources :users
   resources :space do
     resources :blocks
+    put :favorite, on: :member
   end
   resources :contact_form
   

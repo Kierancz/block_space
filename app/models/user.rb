@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :spaces, -> { uniq }
 	has_many :blocks
   has_many :favorite_spaces
-  has_many :favorites, through: :favorite_spaces
+  has_many :favorites, through: :favorite_spaces, source: :space
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
       update_attribute(:deleted_at, Time.current)
     end
 
-    #def active_for_authentication?
-     # super && !deleted_at
-    #end
+    def active_for_authentication?
+      super && !deleted_at
+    end
 
     def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup

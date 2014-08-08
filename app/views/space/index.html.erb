@@ -4,26 +4,50 @@
     <% if @current_user %>
       <center><h3><b>My Spaces</b></h3></center>
         <hr><br>
-        <div class="list-group">
-          <% if @user_spaces.count == 0 %>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <center> You don't have any Spaces yet </center>
+          <ul class="nav nav-tabs">
+            <li class="active"> <a href="#rich" data-target="#contributing" data-toggle="tab">Your Spaces</a>
+            </li>
+            <li><a href="#html" data-target="#favorites" data-toggle="tab">Favorited Spaces</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active fade in" id="contributing"><br>
+              <div class="list-group">
+                <% if @user_spaces.count == 0 %>
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <center> You don't have any Spaces yet </center>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% @user_spaces.each do |space| %>
+                  <%= link_to(space, :class => "list-group-item") do %>
+                    <h4 class="list-group-item-heading">
+                      <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
+                    </h4>
+                    <p class="list-group-item-text">
+                      <%= space.description %>
+                    </p>
+                  <% end %>
+                <% end %>
               </div>
             </div>
-          <% end %>
 
-          <% @user_spaces.each do |space| %>
-            <%= link_to(space, :class => "list-group-item") do %>
-              <h4 class="list-group-item-heading">
-                <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
-              </h4>
-              <p class="list-group-item-text">
-                <%= space.description %>
-              </p>
-            <% end %>
-          <% end %>
-        </div>
+            <div class="tab-pane" id="favorites"><br>
+              <% current_user.favorites.each do |space| %>
+                <%= link_to(space, :class => "list-group-item") do %>
+                  <h4 class="list-group-item-heading">
+                    <%= space.title %><span class="badge alert-inverse pull-right"><%= space.blocks.count %> Blokks</span>
+                  </h4>
+                  <p class="list-group-item-text">
+                    <%= space.description %>
+                  </p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>  
 
       <center><h3><b>New Space</b></h3></center>
       <hr><br>

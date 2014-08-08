@@ -1,15 +1,27 @@
 <div class="col-md-12">
 	<div id="titlesection">
 		<% if current_user && (@space.users.include?(current_user) || current_user.admin?) %>
-			<span id="editlink" class="pull-right">
+			<span class="pull-left">
 				<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
-					<span class="glyphicon glyphicon-pencil"></span><div id="edittext">Edit Space</div>
+					<span class="glyphicon glyphicon-pencil"></span><div>Edit Space</div>
 				<% end %>
 			</span>
 		<% end %>
-		<h1><b><%= @space.title %></b><br>
+		<span class="pull-right">
+		<% if current_user.favorites.include?(@space) %>
+			<%= button_to(favorite_space_path(@space, type: "unfavorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
+			<span class="glyphicon glyphicon-heart"></span><div>Unfavorite</div>
+			<% end %>
+		<% else %>
+			<%= button_to(favorite_space_path(@space, type: "favorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
+			<span class="glyphicon glyphicon-heart-empty"></span><div>Favorite</div>
+			<% end %>
+		<% end %>
+		</span>
+
+		<center><h1><b><%= @space.title %></b><br>
 			<small><%= @space.description %></small><br>
-		</h1>
+		</h1></center>
 	</div>
 	<hr>
 
