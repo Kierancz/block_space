@@ -8,7 +8,7 @@
 	  		<div class="panel-body">
 
 					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-					  <%= f.label :login %> (Username or Email)
+					  <%= f.label :login %> <i>(Username or Email)</i>
 					  <%= f.text_field :login, autofocus: true, class: "form-control"%>
 
 					  <%= f.label :password %>

@@ -10,11 +10,6 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
-  validates :username,
-  :uniqueness => {
-    :case_sensitive => false
-  }
-
 	has_and_belongs_to_many :spaces, -> { uniq }
 	has_many :blocks
   has_many :favorite_spaces
@@ -35,14 +30,14 @@ class User < ActiveRecord::Base
       update_attribute(:deleted_at, Time.current)
     end
 
-    def active_for_authentication?
-      super && !deleted_at
-    end
+    #def active_for_authentication?
+     # super && !deleted_at
+    #end
 
     def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login }]).first
       else
         where(conditions).first
       end
