@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808040509) do
+ActiveRecord::Schema.define(version: 20140808064554) do
 
   create_table "blocks", force: true do |t|
     t.integer  "number"
@@ -25,8 +25,7 @@ ActiveRecord::Schema.define(version: 20140808040509) do
   add_index "blocks", ["space_id", "user_id"], name: "index_blocks_on_space_id_and_user_id"
 
   create_table "favorite_spaces", force: true do |t|
-    t.string   "space_id"
-    t.string   "integer"
+    t.integer  "space_id",   limit: 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
