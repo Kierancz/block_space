@@ -20,6 +20,7 @@
       			  <span class="pull-left"><%= f.submit "Create Blokk", class: "btn btn-medium btn-primary" %></span>
              <% end %>
       			</div>
+            
       			<div class="tab-pane" id="html"><br>
              <%= form_for([@space, @space.blocks.build]) do |f| %>
       			 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>

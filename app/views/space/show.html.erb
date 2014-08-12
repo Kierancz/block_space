@@ -1,29 +1,28 @@
 <div class="col-md-12">
 	<div id="titlesection">
-		<% if current_user && (@space.users.include?(current_user) || current_user.admin?) %>
-			<span class="pull-left">
+		<div id="editlink" class="pull-left">
+			<% if current_user && (@space.users.include?(current_user) || current_user.admin?) %>
 				<%= button_to([:edit, @space], :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
-					<span class="glyphicon glyphicon-pencil"></span><div>Edit Space</div>
+					<span class="glyphicon glyphicon-pencil"></span>Edit Space
 				<% end %>
-			</span>
-		<% end %>
-		<span class="pull-right">
-		<% if current_user.favorites.include?(@space) %>
-			<%= button_to(favorite_space_path(@space, type: "unfavorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
-			<span class="glyphicon glyphicon-heart"></span><div>Unfavorite</div>
 			<% end %>
-		<% else %>
-			<%= button_to(favorite_space_path(@space, type: "favorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
-			<span class="glyphicon glyphicon-heart-empty"></span><div>Favorite</div>
+
+			<% if current_user && current_user.favorites.include?(@space) %>
+				<%= button_to(favorite_space_path(@space, type: "unfavorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
+					<span class="glyphicon glyphicon-heart"></span>Unfavorite
+				<% end %>
+			<% else %>
+				<%= button_to(favorite_space_path(@space, type: "favorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
+					<span class="glyphicon glyphicon-heart-empty"></span>Favorite
+				<% end %>
 			<% end %>
-		<% end %>
-		</span>
+		</div>
+	</div>
 
 		<center><h1><b><%= @space.title %></b><br>
 			<small><%= @space.description %></small><br>
 		</h1></center>
-	</div>
-	<hr>
+		<hr>
 
 	<div class="row">
 		<div class="col-md-6 smalltext">
@@ -33,8 +32,9 @@
 	 			<% end %>
 			</p>
 		</div>
-		<div class="col-md-3 pull-right smalltext" style="text-align:right">
-			<p><b>Edited: </b><%= time_ago_in_words(@lastedited.updated_at.to_time) unless @lastedited.updated_at.blank? %> ago</p>
+
+		<div class="col-md-6 pull-right smalltext" style="text-align:right"><p>	
+			<b>Edited: </b><%= time_ago_in_words(@lastedited.updated_at.to_time) unless @lastedited.updated_at.blank? %> ago</p>
 		</div>
 	</div>
 </div>

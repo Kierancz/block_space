@@ -5,14 +5,30 @@
       <center><h3><b>My Spaces</b></h3></center>
         <hr><br>
           <ul class="nav nav-tabs">
-            <li class="active"> <a href="#rich" data-target="#contributing" data-toggle="tab">Your Spaces</a>
+            <li class="active"><a href="#new_space" data-target="#new_space" data-toggle="tab">New Space</a>
             </li>
-            <li><a href="#html" data-target="#favorites" data-toggle="tab">Favorited Spaces</a>
+            <li> <a href="#spaces" data-target="#contributing" data-toggle="tab">Your Spaces</a>
+            </li>
+            <li><a href="#favorite" data-target="#favorite_spaces" data-toggle="tab">Favorited Spaces</a>
             </li>
           </ul>
 
           <div class="tab-content">
-            <div class="tab-pane active fade in" id="contributing"><br>
+            <div class="tab-pane active fade in" id="new_space"><br>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <%= form_for(@newspace) do |f| %>
+                    <%= f.label :title %>
+                    <%= f.text_field :title, class: "form-control" %>
+                    <%= f.label :description %>
+                    <%= f.text_area :description, :rows => 3, class: "form-control" %>
+                    <span class="pull-left"><%= f.submit "Create New Space", class: "btn btn-large btn-primary" %></span>
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="contributing"><br>
               <div class="list-group">
                 <% if @user_spaces.count == 0 %>
                   <div class="panel panel-default">
@@ -35,7 +51,7 @@
               </div>
             </div>
 
-            <div class="tab-pane" id="favorites"><br>
+            <div class="tab-pane" id="favorite_spaces"><br>
               <% current_user.favorites.each do |space| %>
                 <%= link_to(space, :class => "list-group-item") do %>
                   <h4 class="list-group-item-heading">
@@ -47,42 +63,73 @@
                 <% end %>
               <% end %>
             </div>
-          </div>  
 
-      <center><h3><b>New Space</b></h3></center>
-      <hr><br>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <%= form_for(@newspace) do |f| %>
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-            <%= f.label :description %>
-            <%= f.text_area :description, :rows => 3, class: "form-control" %>
-            <span class="pull-left"><%= f.submit "Create New Space", class: "btn btn-large btn-primary" %></span>
-            <% end %>
-          </div>
-        </div>
+          </div>  
     <% end %>
   </div>
 
   <% if user_signed_in? %>
-  <div class="col-md-6">
+    <div class="col-md-6">
   <% else %>
-  <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
   <% end %>
       <center><h3><b>Public Spaces</b></h3></center>
       <hr><br>
-    <div class="list-group">
-      <% @spaces.each do |space| %>
-      <%= link_to(space, :class => "list-group-item") do %>
-      <h4 class="list-group-item-heading">
-        <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
-      </h4>
-      <p class="list-group-item-text">
-        <%= space.description %>
-      </p>
-      <% end %>
-      <% end %>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#public" data-target="#public" data-toggle="tab">All Public</a>
+          </li>
+          <li> <a href="#favorite" data-target="#favorite" data-toggle="tab">Most Favorited</a>
+          </li>
+          <li> <a href="#recent" data-target="#recent" data-toggle="tab">Most Recent</a>
+          </li>
+        </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane active fade in" id="public"><br>
+        <div class="list-group">
+          <% @spaces.each do |space| %>
+            <%= link_to(space, :class => "list-group-item") do %>
+            <h4 class="list-group-item-heading">
+              <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
+            </h4>
+            <p class="list-group-item-text">
+              <%= space.description %>
+            </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="favorite"><br>
+        <% @spaces.sort_by{|e| e[:favorites]} %>
+        <% @spaces.each do |space| %>
+          <%= link_to(space, :class => "list-group-item") do %>
+          <h4 class="list-group-item-heading">
+            <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
+          </h4>
+          <p class="list-group-item-text">
+            <%= space.description %>
+          </p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="tab-pane" id="recent"><br>
+        <% @spaces.sort_by{|e| e[:time_ago]} %>
+        <% @spaces.each do |space| %>
+          <%= link_to(space, :class => "list-group-item") do %>
+          <h4 class="list-group-item-heading">
+            <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
+          </h4>
+          <p class="list-group-item-text">
+            <%= space.description %>
+          </p>
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
+
   </div>
 </div>

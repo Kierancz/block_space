@@ -21,8 +21,8 @@
 					<%= button_to({:controller => :blocks, :action => 'destroy', :id => block.id, :space_id => @space.id }, :method => :delete, data: { confirm: 'Are you sure you want to delete this block?' }, :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-remove"><span class="buttontext">Delete</span></span>
 					<% end %>
-
 					</span>
+					
 					<span class="pull-right blockbutton">
 					<%= button_to(edit_space_block_path(@space, block), :method => "get", :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-pencil"><span class="buttontext">Edit</span></span>

@@ -105,12 +105,10 @@ class SpaceController < ApplicationController
     type = params[:type]
     if type == "favorite"
       current_user.favorites << @space
-      redirect_to :back, notice: "You favorited #{@space.title}"
-
+      redirect_to :back#, notice: "You favorited #{@space.title}"
     elsif type == "unfavorite"
       current_user.favorites.delete(@space)
-      redirect_to :back, notice: "Unfavorited #{@space.title}"
-
+      redirect_to :back#, notice: "Unfavorited #{@space.title}"
     else  #type missing, nothing happens
       redirect_to :back, notice: 'Nothing happened'
     end
