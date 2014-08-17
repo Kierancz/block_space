@@ -102,8 +102,7 @@
       </div>
 
       <div class="tab-pane" id="favorite"><br>
-        <% @spaces.sort_by{|e| e[:favorites]} %>
-        <% @spaces.each do |space| %>
+        <% @spaces.fav.each do |space| %>
           <%= link_to(space, :class => "list-group-item") do %>
           <h4 class="list-group-item-heading">
             <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>
@@ -116,8 +115,7 @@
       </div>
 
       <div class="tab-pane" id="recent"><br>
-        <% @spaces.sort_by{|e| e[:time_ago]} %>
-        <% @spaces.each do |space| %>
+        <% @spaces.desc.each do |space| %>
           <%= link_to(space, :class => "list-group-item") do %>
           <h4 class="list-group-item-heading">
             <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>

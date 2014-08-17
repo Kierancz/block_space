@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20140808064554) do
   add_index "blocks", ["space_id", "user_id"], name: "index_blocks_on_space_id_and_user_id"
 
   create_table "favorite_spaces", force: true do |t|
-    t.integer  "space_id",   limit: 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "space_id"
   end
 
   create_table "identities", force: true do |t|

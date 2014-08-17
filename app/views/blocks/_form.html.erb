@@ -4,32 +4,33 @@
 <div class="row">
 	<div class="col-xs-12 col-md-6 col-md-offset-3">
 		<h2>Add a blokk:</h2>
-		  <div class="panel panel-default">
-    		<div class="panel-body">
-    			<ul class="nav nav-tabs">
-    				<li class="active"> <a href="#rich" data-target="#rich" data-toggle="tab">Rich Text Editor</a>
-    				</li>
-    				<li><a href="#html" data-target="#html" data-toggle="tab">Raw HTML Editor</a>
-    				</li>
-    			</ul>
+	  <div class="panel panel-default">
+  		<div class="panel-body">
+  			<ul class="nav nav-tabs">
+  				<li class="active"> <a href="#rich" data-target="#rich" data-toggle="tab">Rich Text</a>
+  				</li>
+  				<li><a href="#html" data-target="#html" data-toggle="tab">Raw HTML</a>
+  				</li>
+  			</ul>
 
-    			<div class="tab-content">
-    				<div class="tab-pane active fade in" id="rich"><br>
-              <%= form_for([@space, @space.blocks.build]) do |f| %>
-      			  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
-      			  <span class="pull-left"><%= f.submit "Create Blokk", class: "btn btn-medium btn-primary" %></span>
-             <% end %>
-      			</div>
-            
-      			<div class="tab-pane" id="html"><br>
-             <%= form_for([@space, @space.blocks.build]) do |f| %>
-      			 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
-      			 <span class="pull-left"><%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %></span>
-             <% end %>
-      			</div>
-      		</div>	
-			  </div>
+  			<div class="tab-content">
+  				<div class="tab-pane active fade in" id="rich"><br>
+            <%= form_for([@space, @space.blocks.build]) do |f| %>
+    			  <%= f.text_area :content, :rows => 5, placeholder: 'Enter Rich Text', class: "wysihtml5" %>
+    			  <span class="pull-left"><%= f.submit "Create Blokk", class: "btn btn-medium btn-primary" %></span>
+           <% end %>
+    			</div>
+          
+    			<div class="tab-pane" id="html"><br>
+           <%= form_for([@space, @space.blocks.build]) do |f| %>
+    			 <%= f.text_area :content, :rows => 5, placeholder: 'Enter Raw HTML' %>
+    			 <span class="pull-left"><%= f.submit "Create Blokk", class: "btn btn-large btn-primary" %></span>
+           <% end %>
+    			</div>
+    		</div>	
+        
 		  </div>
+	  </div>
 	</div>
 </div>
 <% end %>
