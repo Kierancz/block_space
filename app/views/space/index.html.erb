@@ -78,7 +78,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a href="#public" data-target="#public" data-toggle="tab">All Public</a>
           </li>
-          <li> <a href="#favorite" data-target="#favorite" data-toggle="tab">Most Favorited</a>
+          <li> <a href="#favorite" data-target="#favorite" data-toggle="tab">Most Favored</a>
           </li>
           <li> <a href="#recent" data-target="#recent" data-toggle="tab">Most Recent</a>
           </li>
@@ -115,7 +115,7 @@
       </div>
 
       <div class="tab-pane" id="recent"><br>
-        <% @spaces.desc.each do |space| %>
+        <% @spaces.recent.each do |space| %>
           <%= link_to(space, :class => "list-group-item") do %>
           <h4 class="list-group-item-heading">
             <%= space.title %><span class="badge pull-right"><%= space.blocks.count %> Blokks</span>

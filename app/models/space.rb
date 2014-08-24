@@ -4,7 +4,7 @@ class Space < ActiveRecord::Base
 	has_many :favorite_spaces
 	has_many :favorited_by, through: :favorite_spaces, source: :user
 
-	scope :desc, order("spaces.updated_at DESC")
+	scope :recent, lambda { order("spaces.updated_at DESC") }
 	scope :fav,
 		lambda { 		#Refreshes the results
 		select("spaces.*, count(favorite_spaces.id) AS favorite_space_count").

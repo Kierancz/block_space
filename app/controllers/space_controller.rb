@@ -60,8 +60,8 @@ class SpaceController < ApplicationController
     if @space.update_attributes(space_params)
       redirect_to @space
       flash[:success] = "Space successfully updated!"
-    #else
-     # render :action => 'edit'
+    else
+      render :action => 'edit'
     end
   end
 

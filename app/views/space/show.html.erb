@@ -11,7 +11,7 @@
 				<%= button_to(favorite_space_path(@space, type: "unfavorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-heart"></span>Unfavorite
 				<% end %>
-			<% else %>
+			<% elsif current_user %>
 				<%= button_to(favorite_space_path(@space, type: "favorite"), method: :put, :class => 'btn btn-default btn-link btn-xs') do %>
 					<span class="glyphicon glyphicon-heart-empty"></span>Favorite
 				<% end %>
